@@ -1,0 +1,37 @@
+services:
+  tcp-server:
+    build: 
+      context: ./TCP
+    container_name: tcp-file-server
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./TCP/data:/app/data
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "8080"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  web-api:
+    build:
+      context: ./WebApplication1
+    container_name: web-api-server
+    ports:
+      - "5000:8080"
+    volumes:
+      - ./WebApplication1/logs:/app/logs
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8080
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/", "||", "exit", "1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s

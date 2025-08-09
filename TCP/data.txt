@@ -1,0 +1,2 @@
+﻿KEY:121211;NAME:PROTO-2901;STATUS:HEALTH;
+Новая строка добавлена через TCP
