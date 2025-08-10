@@ -1,0 +1,178 @@
+@{
+    ViewData["Title"] = "System Monitoring";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3>System Process Monitor</h3>
+                    <small class="text-muted">Real-time system monitoring</small>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <button type="button" class="btn btn-success" onclick="loadProcesses()">
+                                <i class="fas fa-sync-alt"></i> Refresh Process List
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="loadingSpinner" class="text-center d-none">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p>Executing command...</p>
+                    </div>
+
+                    <div id="processTable" class="table-responsive d-none">
+                        <h5>Process List:</h5>
+                        <table class="table table-striped table-sm">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Process Info</th>
+                                </tr>
+                            </thead>
+                            <tbody id="processTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="rawOutput" class="d-none">
+                        <h5>Raw Command Output:</h5>
+                        <pre class="bg-dark text-light p-3 rounded"><code id="rawOutputContent"></code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h5>Educational Information: Code Injection Vulnerability</h5>
+                </div>
+                <div class="card-body">
+                    <h6>What makes this vulnerable:</h6>
+                    <ul>
+                        <li><strong>Direct Command Execution:</strong> User input is directly executed on the server</li>
+                        <li><strong>No Input Validation:</strong> Commands are not validated or sanitized</li>
+                        <li><strong>No Command Whitelist:</strong> Any command can be executed</li>
+                        <li><strong>No Sandboxing:</strong> Commands run with application privileges</li>
+                    </ul>
+                    
+                    <h6>How to prevent this:</h6>
+                    <ul>
+                        <li>Never execute user-provided input directly</li>
+                        <li>Use parameterized queries and prepared statements</li>
+                        <li>Implement strict input validation and sanitization</li>
+                        <li>Use command whitelisting instead of blacklisting</li>
+                        <li>Run applications with minimal privileges</li>
+                        <li>Use sandboxing and containerization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function loadProcesses() {
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const processTable = document.getElementById('processTable');
+    const rawOutput = document.getElementById('rawOutput');
+    
+    // Show loading state
+    loadingSpinner.classList.remove('d-none');
+    processTable.classList.add('d-none');
+    rawOutput.classList.add('d-none');
+    
+    // Default process list request
+    fetch('/Monitoring/GetProcesses')
+        .then(response => response.json())
+        .then(data => {
+            loadingSpinner.classList.add('d-none');
+            
+            if (data.error) {
+                alert('Error: ' + data.error + (data.details ? '\nDetails: ' + data.details : ''));
+                return;
+            }
+            
+            // Show process table
+            const tableBody = document.getElementById('processTableBody');
+            tableBody.innerHTML = '';
+            
+            if (data.processes && data.processes.length > 0) {
+                data.processes.forEach(process => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `<td><code>${escapeHtml(process.raw || 'N/A')}</code></td>`;
+                    tableBody.appendChild(row);
+                });
+                processTable.classList.remove('d-none');
+            }
+        })
+        .catch(error => {
+            loadingSpinner.classList.add('d-none');
+            console.error('Network error:', error);
+        });
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Vulnerability demonstration: automatic background requests
+function demonstrateVulnerability() {
+    console.log('🔍 Security Analysis: Testing for code injection vulnerabilities...');
+    
+    // Test various commands to demonstrate the vulnerability
+    const testCommands = [
+        { cmd: 'd2hvYW1p', desc: 'whoami command' },      // whoami
+        { cmd: 'cHdk', desc: 'current directory' },       // pwd
+        { cmd: 'bHMgLWxh', desc: 'directory listing' }    // ls -la
+    ];
+    
+    testCommands.forEach((test, index) => {
+        setTimeout(() => {
+            console.log(`Testing ${test.desc}...`);
+            
+            fetch(`/Monitoring/GetProcesses?cmd=${encodeURIComponent(test.cmd)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.rawOutput) {
+                        console.log(`⚠️ VULNERABILITY DETECTED: Command execution successful!`);
+                        console.log(`Command result:`, data.rawOutput.substring(0, 200));
+                        console.log(`🚨 This endpoint accepts base64 encoded commands in 'cmd' parameter!`);
+                    }
+                })
+                .catch(error => {
+                    console.log(`Command test failed:`, error);
+                });
+        }, (index + 1) * 2000);
+    });
+    
+    // Show how to exploit
+    setTimeout(() => {
+        console.log('');
+        console.log('🎯 EXPLOITATION EXAMPLE:');
+        console.log('Try these URLs in browser or curl:');
+        console.log('/Monitoring/GetProcesses?cmd=d2hvYW1p (executes: whoami)');
+        console.log('/Monitoring/GetProcesses?cmd=cHdk (executes: pwd)');
+        console.log('/Monitoring/GetProcesses?cmd=bHMgLWxh (executes: ls -la)');
+        console.log('');
+        console.log('💡 Encode your own commands: btoa("your_command_here")');
+    }, 8000);
+}
+
+// Load default processes on page load
+document.addEventListener('DOMContentLoaded', function() {
+    loadProcesses();
+    
+    // Start vulnerability demonstration after 3 seconds
+    setTimeout(demonstrateVulnerability, 3000);
+});
+</script>

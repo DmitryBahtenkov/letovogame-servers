@@ -22,7 +22,7 @@ services:
       context: ./WebApplication1
     container_name: web-api-server
     ports:
-      - "5000:8080"
+      - "5001:8080"
     volumes:
       - ./WebApplication1/logs:/app/logs
     environment:
@@ -35,3 +35,58 @@ services:
       timeout: 10s
       retries: 3
       start_period: 30s
+
+  vulnerable-login:
+    build: 
+      context: ./VulnerableLogin
+      dockerfile: Dockerfile
+    container_name: vulnerable-login-demo
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+    
+    # Security hardening for educational demo
+    read_only: true              # Make root filesystem read-only
+    
+    # Drop all capabilities for maximum security
+    cap_drop:
+      - ALL
+    
+    # Security options
+    security_opt:
+      - no-new-privileges:true   # Prevent privilege escalation
+    
+    # Temporary filesystems for writable directories
+    tmpfs:
+      - /tmp:noexec,nosuid,size=100m,uid=1001,gid=1001
+      - /var/tmp:noexec,nosuid,size=50m,uid=1001,gid=1001
+      - /app/bin:noexec,nosuid,size=10m,uid=1001,gid=1001
+      - /app/obj:noexec,nosuid,size=10m,uid=1001,gid=1001
+    
+    # Resource limits to prevent DoS
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          memory: 256M
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/Auth/Login"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    # Restart policy
+    restart: unless-stopped
+    
+    # Labels for documentation
+    labels:
+      - "description=Vulnerable login application for cybersecurity education"
+      - "security.hardened=true"
+      - "purpose=educational-demo"

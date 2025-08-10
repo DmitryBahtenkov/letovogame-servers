@@ -1,0 +1,98 @@
+@{
+    ViewData["Title"] = "Dashboard - Authenticated";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="jumbotron bg-success text-white p-4 rounded">
+                <h1 class="display-4">✅ Authentication Successful!</h1>
+                <p class="lead">Welcome, <strong>@ViewBag.Username</strong>!</p>
+                <hr class="my-4">
+                <p>You have successfully bypassed the vulnerable authentication system.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Vulnerabilities Demonstrated</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>No Rate Limiting:</strong> Login attempts are not limited, allowing brute force attacks
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Information Disclosure:</strong> Error messages reveal whether usernames exist
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Weak Passwords:</strong> Demo accounts use common, easily guessable passwords
+                        </li>
+                        <li class="list-group-item">
+                            <strong>2FA Code Exposure:</strong> Authentication codes are visible in HTTP response headers
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Predictable 2FA:</strong> Two-factor codes are generated predictably based on username
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Client-Side Exposure:</strong> Sensitive information is logged to browser console
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Hidden Vulnerabilities:</strong> Additional security flaws may exist in system monitoring features
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Session Info</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>User:</strong> @ViewBag.Username</p>
+                    <p><strong>Status:</strong> <span class="badge bg-success">Authenticated</span></p>
+                    <p><strong>Session:</strong> Active</p>
+                    
+                    <div class="d-grid gap-2">
+                        <a href="/Monitoring" class="btn btn-warning">
+                            <i class="fas fa-desktop"></i> System Monitoring
+                        </a>
+                        <small class="text-muted">System process monitoring</small>
+                    </div>
+                    
+                    <form asp-action="Logout" method="post" class="mt-3">
+                        <button type="submit" class="btn btn-outline-danger">Logout</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Educational Purpose</h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">
+                        This application is designed for cybersecurity education and demonstrates common 
+                        authentication vulnerabilities. In production applications, implement proper security measures:
+                    </p>
+                    <ul>
+                        <li>Rate limiting and account lockout mechanisms</li>
+                        <li>Strong password policies and encryption</li>
+                        <li>Secure 2FA implementation with cryptographically random codes</li>
+                        <li>Generic error messages that don't leak information</li>
+                        <li>Proper session management and CSRF protection</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

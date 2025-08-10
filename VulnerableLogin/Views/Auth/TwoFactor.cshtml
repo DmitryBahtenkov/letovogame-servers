@@ -1,0 +1,80 @@
+@model VulnerableLogin.Models.TwoFactorModel
+@{
+    ViewData["Title"] = "Two-Factor Authentication";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center">Two-Factor Authentication</h3>
+                <p class="text-center text-muted">User: @Model.Username</p>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Educational Demo:</strong> Open browser dev tools (F12) and check the Network tab or Response Headers to see security vulnerabilities.
+                </div>
+                
+                <form asp-action="TwoFactor" method="post">
+                    <input asp-for="Username" type="hidden" />
+                    <div asp-validation-summary="All" class="text-danger mb-3"></div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="Code" class="form-label">Enter 4-digit code</label>
+                        <input asp-for="Code" class="form-control text-center" 
+                               placeholder="0000" maxlength="4" 
+                               style="font-size: 1.5rem; letter-spacing: 0.3rem;" />
+                        <span asp-validation-for="Code" class="text-danger"></span>
+                        <div class="form-text">
+                            Check browser dev tools for hints (vulnerability demo)
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Verify Code</button>
+                        <a asp-action="Login" class="btn btn-outline-secondary">Back to Login</a>
+                    </div>
+                </form>
+                
+                <div class="mt-4">
+                    <h6>Educational Note:</h6>
+                    <small class="text-muted">
+                        This demo shows how 2FA codes can be exposed in HTTP responses. 
+                        In real applications, codes should never be visible in client-side responses.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Vulnerability: Expose additional information in browser console
+console.log("2FA Demo - Check Network tab in DevTools for security issues");
+console.log("User:", "@Model.Username");
+
+// Vulnerability: Make AJAX call that exposes 2FA code in response
+fetch('/Auth/TwoFactor', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: 'Code=0000&Username=@Model.Username'
+})
+.then(response => {
+    console.log("Response headers contain sensitive information:");
+    for (let [key, value] of response.headers.entries()) {
+        if (key.toLowerCase().includes('x-')) {
+            console.log(key + ": " + value);
+        }
+    }
+})
+.catch(error => {
+    console.log("Error during demo request:", error);
+});
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
