@@ -1,5 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 
+// Configure URLs for Docker
+builder.WebHost.UseUrls("http://0.0.0.0:8002");
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -31,9 +34,10 @@ app.Use(async (context, next) =>
     await next();
 });
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
+// Skip HTTPS redirection in production for Docker
+// app.UseHttpsRedirection(); 
 
+app.UseStaticFiles();
 app.UseRouting();
 app.UseSession();
 app.UseAuthorization();
@@ -41,9 +45,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=ChipAuth}/{action=Login}/{id?}");
-
-// Configure to run on port 8002
-app.Urls.Add("http://localhost:8002");
-app.Urls.Add("https://localhost:8003");
 
 app.Run();

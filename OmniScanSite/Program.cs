@@ -1,10 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.UseUrls("http://localhost:8003");
+builder.WebHost.UseUrls("http://0.0.0.0:8003");
 
 var app = builder.Build();
-
-app.UseStaticFiles();
 
 app.MapGet("/", async (HttpContext context) =>
 {
