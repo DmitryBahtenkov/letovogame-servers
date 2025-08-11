@@ -1,22 +1,86 @@
 [
   {
     "Username": "admin",
-    "Password": "123456"
+    "Password": "Qx8#mK9$vL2@nR5!"
   },
   {
     "Username": "user",
-    "Password": "Password"
+    "Password": "Pw7&tY6*eN3#mQ8$"
   },
   {
     "Username": "test",
-    "Password": "test"
+    "Password": "Fz4@kL9%uI6#eR2$"
   },
   {
     "Username": "guest",
-    "Password": "guest123"
+    "Password": "Bv5!wX8&yT3@nM7%"
   },
   {
     "Username": "demo",
-    "Password": "qwerty"
+    "Password": "Hs2#jK5$rE8*vQ6!"
+  },
+  {
+    "Username": "manager",
+    "Password": "Lm9@pN4&xZ7#bV5$"
+  },
+  {
+    "Username": "developer",
+    "Password": "Rt6!qW3*sA9@fD2#"
+  },
+  {
+    "Username": "analyst",
+    "Password": "Gz8%cV5&uY2!nM4$"
+  },
+  {
+    "Username": "support",
+    "Password": "Kl3#hJ6*eR9@wT7!"
+  },
+  {
+    "Username": "operator",
+    "Password": "Xz5$mB8&vN2#qL4%"
+  },
+  {
+    "Username": "supervisor",
+    "Password": "Py7!fG4*tR8@kS6#"
+  },
+  {
+    "Username": "coordinator",
+    "Password": "Vn2%wE9&bC5!xZ8$"
+  },
+  {
+    "Username": "specialist",
+    "Password": "Jh6#lM3*pQ7@vT4!"
+  },
+  {
+    "Username": "consultant",
+    "Password": "Df9$rK2&yU5#nH8%"
+  },
+  {
+    "Username": "executive",
+    "Password": "Bs4!gT7*eW3@mL6#"
+  },
+  {
+    "Username": "director",
+    "Password": "Qw8%vC5&kN2$rF9!"
+  },
+  {
+    "Username": "engineer",
+    "Password": "Hj3#xZ6*lP9@tY4$"
+  },
+  {
+    "Username": "technician",
+    "Password": "Mn7!bV4&sQ8#eR5%"
+  },
+  {
+    "Username": "assistant",
+    "Password": "Fk2$wN9*pG6@vT3!"
+  },
+  {
+    "Username": "intern",
+    "Password": "Ly5#jH8&cM4!xB7$"
+  },
+  {
+    "Username": "secret",
+    "Password": "secret"
   }
 ]
