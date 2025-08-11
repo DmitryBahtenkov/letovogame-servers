@@ -85,7 +85,7 @@ namespace VulnerableLogin.Controllers
             }
             else
             {
-                processStartInfo.FileName = "/bin/bash";
+                processStartInfo.FileName = "/bin/sh";
                 processStartInfo.Arguments = $"-c \"{command}\"";
             }
             
