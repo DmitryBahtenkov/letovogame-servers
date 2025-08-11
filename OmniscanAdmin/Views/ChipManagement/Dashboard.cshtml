@@ -13,6 +13,12 @@
                         <div>
                             <h2>🔬 OmniScan Chip Management Center</h2>
                             <p class="mb-0">Neural Interface Control System v2.4.1</p>
+                            @if (ViewBag.IsOldRole)
+                            {
+                                <p class="mb-0 text-warning">
+                                    <small>⚠️ Legacy Access Mode - Limited to prototype and inactive chips only</small>
+                                </p>
+                            }
                         </div>
                         <div class="text-end">
                             <div>👤 User: <strong>@ViewBag.Username</strong></div>
@@ -45,11 +51,19 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="card text-white bg-secondary">
                 <div class="card-body">
                     <h5 class="card-title">🔌 Disabled</h5>
                     <h2>@Model.Count(c => c.Status == "disabled")</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="card text-white bg-warning">
+                <div class="card-body">
+                    <h5 class="card-title">⏸️ Inactive</h5>
+                    <h2>@Model.Count(c => c.Status == "inactive")</h2>
                 </div>
             </div>
         </div>
@@ -151,6 +165,10 @@
                                             else if (chip.Status == "disabled")
                                             {
                                                 <span class="badge bg-secondary">⚫ Disabled</span>
+                                            }
+                                            else if (chip.Status == "inactive")
+                                            {
+                                                <span class="badge bg-warning">🟡 Inactive</span>
                                             }
                                         </td>
                                         <td>

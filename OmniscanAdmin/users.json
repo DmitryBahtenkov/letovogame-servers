@@ -6,7 +6,12 @@
   },
   {
     "Username": "monitor",
-    "Password": "iloveyou",
+    "Password": "fsdfgdgsdfg54",
     "Role": "monitor"
+  },
+  {
+    "Username": "oldtech",
+    "Password": "iloveyou",
+    "Role": "old"
   }
 ]

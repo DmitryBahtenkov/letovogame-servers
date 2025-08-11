@@ -29,9 +29,26 @@ namespace OmniscanAdmin.Controllers
             var username = HttpContext.Session.GetString("AuthenticatedUser");
             var userRole = HttpContext.Session.GetString("UserRole");
             
+            // Filter chips based on user role
+            if (userRole == "old")
+            {
+                // Old role can only see chips with names containing "proto" OR inactive chips
+                chips = chips.Where(c => 
+                    c.Name.Contains("proto", StringComparison.OrdinalIgnoreCase) ||
+                    c.Status == "disabled" ||
+                    c.Status == "inactive"
+                ).ToList();
+                
+                // Add debug header for old role filtering
+                Response.Headers.Add("X-Chip-Filter-Applied", "old-role-proto-inactive-only");
+                Response.Headers.Add("X-Legacy-Access", "prototype-monitoring-enabled");
+            }
+            
             ViewBag.Username = username;
             ViewBag.UserRole = userRole;
             ViewBag.IsAdmin = userRole == "admin";
+            ViewBag.IsOldRole = userRole == "old";
+            ViewBag.FilteredCount = chips.Count;
 
             return View(chips);
         }
@@ -249,6 +266,33 @@ namespace OmniscanAdmin.Controllers
                     LastCommand = "DATA_TRANSMISSION_OK", 
                     LastUpdate = DateTime.Now.AddMinutes(-7),
                     SerialNumber = "OSC-005-2024"
+                },
+                new Chip 
+                { 
+                    Id = 6, 
+                    Name = "omniscan-gen1", 
+                    Status = "health", 
+                    LastCommand = "NEURAL_SYNC_COMPLETE", 
+                    LastUpdate = DateTime.Now.AddMinutes(-3),
+                    SerialNumber = "OSC-GEN1-2024"
+                },
+                new Chip 
+                { 
+                    Id = 7, 
+                    Name = "legacy-chip-alpha", 
+                    Status = "inactive", 
+                    LastCommand = "SYSTEM_HIBERNATION", 
+                    LastUpdate = DateTime.Now.AddHours(-24),
+                    SerialNumber = "OSC-LEG-ALPHA"
+                },
+                new Chip 
+                { 
+                    Id = 8, 
+                    Name = "proto-beta-test", 
+                    Status = "disabled", 
+                    LastCommand = "EMERGENCY_SHUTDOWN", 
+                    LastUpdate = DateTime.Now.AddHours(-6),
+                    SerialNumber = "OSC-PROTO-BETA"
                 }
             };
         }

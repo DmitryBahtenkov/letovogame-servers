@@ -1,4 +1,119 @@
+version: '3.8'
+
 services:
+  # === OMNISCAN CRISIS GAME SERVICES ===
+  
+  # TCP Logs Server (Port 8001)
+  omniscan-logs:
+    build:
+      context: .
+      dockerfile: OmniscanLogs/Dockerfile
+    container_name: omniscan-logs-server
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./OmniscanLogs/logs.txt:/app/logs.txt
+      - logs-data:/app/data
+    networks:
+      - omniscan-network
+    restart: unless-stopped
+    environment:
+      - DOTNET_ENVIRONMENT=Production
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "8001"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      - "omniscan.service=logs-tcp-server"
+      - "omniscan.port=8001"
+      - "omniscan.protocol=TCP"
+
+  # Web Admin Panel (Port 8002)  
+  omniscan-admin:
+    build:
+      context: .
+      dockerfile: OmniscanAdmin/Dockerfile
+    container_name: omniscan-admin-panel
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./OmniscanAdmin/users.json:/app/users.json
+      - ./OmniscanAdmin/chips.json:/app/chips.json
+    networks:
+      - omniscan-network
+    restart: unless-stopped
+    environment:
+      - DOTNET_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8002
+      - OmniScanSettings__MasterDisableCode=EMERGENCY_SHUTDOWN_2024
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8002/ChipAuth/Login", "||", "exit", "1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    depends_on:
+      - omniscan-logs
+    labels:
+      - "omniscan.service=admin-web-panel"
+      - "omniscan.port=8002"
+      - "omniscan.protocol=HTTP"
+
+  # OmniScan Medical Chips Landing (Port 8003)
+  omniscan-site:
+    build:
+      context: .
+      dockerfile: OmniScanSite/Dockerfile
+    container_name: omniscan-landing-site
+    ports:
+      - "8003:8003"
+    networks:
+      - omniscan-network
+    restart: unless-stopped
+    environment:
+      - DOTNET_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8003
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8003/health", "||", "exit", "1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      - "omniscan.service=medical-chips-landing"
+      - "omniscan.port=8003"
+      - "omniscan.protocol=HTTP"
+
+  # NZT Nootropics Landing (Port 8004)
+  nzt-site:
+    build:
+      context: .
+      dockerfile: NZTSite/Dockerfile
+    container_name: nzt-landing-site
+    ports:
+      - "8004:8004"
+    networks:
+      - omniscan-network
+    restart: unless-stopped
+    environment:
+      - DOTNET_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8004
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8004/health", "||", "exit", "1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      - "omniscan.service=nzt-nootropics-landing"
+      - "omniscan.port=8004"
+      - "omniscan.protocol=HTTP"
+
+  # === LEGACY SERVICES ===
+  
+  # Legacy TCP Server
   tcp-server:
     build: 
       context: ./TCP
@@ -7,6 +122,8 @@ services:
       - "8080:8080"
     volumes:
       - ./TCP/data:/app/data
+    networks:
+      - omniscan-network
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
     restart: unless-stopped
@@ -25,6 +142,8 @@ services:
       - "5001:8080"
     volumes:
       - ./WebApplication1/logs:/app/logs
+    networks:
+      - omniscan-network
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:8080
@@ -90,3 +209,26 @@ services:
       - "description=Vulnerable login application for cybersecurity education"
       - "security.hardened=true"
       - "purpose=educational-demo"
+
+# === NETWORKS ===
+networks:
+  omniscan-network:
+    driver: bridge
+    name: omniscan-crisis-network
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1
+    labels:
+      - "omniscan.network=true"
+      - "purpose=cybersecurity-education"
+
+# === VOLUMES ===
+volumes:
+  logs-data:
+    driver: local
+    name: omniscan-logs-data
+    labels:
+      - "omniscan.volume=logs-data"
+      - "purpose=tcp-logs-storage"
