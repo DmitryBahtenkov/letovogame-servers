@@ -19,4 +19,6 @@ RUN dotnet publish "./NZTSite.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+# Copy the HTML file from the source
+COPY ["NZTSite/index.html", "./index.html"]
 ENTRYPOINT ["dotnet", "NZTSite.dll"]

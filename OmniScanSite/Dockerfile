@@ -19,4 +19,6 @@ RUN dotnet publish "./OmniScanSite.csproj" -c $BUILD_CONFIGURATION -o /app/publi
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+# Copy the HTML file from the source
+COPY ["OmniScanSite/index.html", "./index.html"]
 ENTRYPOINT ["dotnet", "OmniScanSite.dll"]
