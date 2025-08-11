@@ -1,0 +1,6 @@
+NAME=proto-001;STATUS=health;COMMAND=system_startup_complete
+NAME=proto-002;STATUS=health;COMMAND=scanner_calibration_ok
+NAME=proto-003;STATUS=danger;COMMAND=unauthorized_access_attempt
+NAME=proto-004;STATUS=health;COMMAND=data_backup_completed
+NAME=proto-005;STATUS=danger;COMMAND=anomaly_detected_sector_7
+NAME=proto-006;STATUS=health;COMMAND=test_entry

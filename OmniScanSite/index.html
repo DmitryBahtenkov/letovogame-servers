@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniScan - Революция в мониторинге здоровья</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        .features {
+            background: white;
+            padding: 80px 0;
+            margin-top: -50px;
+            border-radius: 50px 50px 0 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: #f8f9ff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e8ecff;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #5a67d8;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 60px;
+        }
+
+        .benefits {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .benefit-check {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: #4ade80;
+        }
+
+        .testimonials {
+            background: #f8f9ff;
+            padding: 80px 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #5a67d8;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">🔬 OmniScan</a>
+                <div>
+                    <span style="color: rgba(255,255,255,0.8);">Мониторинг Здоровья 24/7</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="pulse">OmniScan</h1>
+            <p class="hero-subtitle">Революционные медицинские чипы для полного контроля вашего здоровья</p>
+            <a href="#features" class="cta-button">Узнать больше</a>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Возможности OmniScan</h2>
+            <p class="section-subtitle">Передовые технологии для вашего здоровья и благополучия</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🏥</span>
+                    <h3>Полное сканирование здоровья</h3>
+                    <p>Мониторинг всех жизненно важных показателей в режиме реального времени: сердечный ритм, давление, уровень кислорода, температура тела и многое другое.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Анализ всех метрик</h3>
+                    <p>Глубокий анализ биометрических данных с использованием ИИ. Отслеживание трендов, предсказание изменений и персонализированные отчеты.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🧘‍♀️</span>
+                    <h3>Избавление от стресса</h3>
+                    <p>Автоматическое определение уровня стресса и активация встроенных техник релаксации. Биофидбек и нейростимуляция для быстрого восстановления.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">😴</span>
+                    <h3>Оптимизация сна</h3>
+                    <p>Анализ фаз сна, качества отдыха и автоматическая коррекция биоритмов. Умный будильник и индивидуальные рекомендации для лучшего сна.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">💡</span>
+                    <h3>Персональные рекомендации</h3>
+                    <p>ИИ-помощник предоставляет индивидуальные советы по питанию, физической активности, режиму дня на основе ваших уникальных данных.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3>Мгновенные уведомления</h3>
+                    <p>Система раннего предупреждения о потенциальных проблемах со здоровьем. Автоматические вызовы экстренных служб при критических показателях.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Преимущества OmniScan</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Почему миллионы людей выбирают OmniScan</p>
+            
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <span class="benefit-check">✅</span>
+                    <div>
+                        <h4>Медицинская точность</h4>
+                        <p>Сертификация FDA, точность 99.9%</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <span class="benefit-check">✅</span>
+                    <div>
+                        <h4>Безопасность данных</h4>
+                        <p>Шифрование военного уровня</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <span class="benefit-check">✅</span>
+                    <div>
+                        <h4>Долговечность</h4>
+                        <p>До 10 лет автономной работы</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <span class="benefit-check">✅</span>
+                    <div>
+                        <h4>Биосовместимость</h4>
+                        <p>100% гипоаллергенные материалы</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <span class="benefit-check">✅</span>
+                    <div>
+                        <h4>Простая установка</h4>
+                        <p>Процедура занимает 15 минут</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <span class="benefit-check">✅</span>
+                    <div>
+                        <h4>24/7 Поддержка</h4>
+                        <p>Медицинская поддержка круглосуточно</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Отзывы пользователей</h2>
+            <p class="section-subtitle">Реальные истории людей, чьи жизни изменились с OmniScan</p>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">"OmniScan спас мне жизнь! Чип обнаружил сердечную аритмию за 3 дня до инфаркта. Врачи успели принять меры. Теперь я чувствую себя в полной безопасности."</p>
+                    <p class="testimonial-author">- Анна Петрова, 45 лет</p>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-text">"Забыл, что такое бессонница! Система оптимизации сна работает невероятно. Просыпаюсь отдохнувшим каждый день. Производительность на работе выросла в разы."</p>
+                    <p class="testimonial-author">- Михаил Иванов, 38 лет</p>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-text">"Как врач, я скептически относилась к новым технологиям. Но OmniScan действительно революционен. Точность диагностики поражает. Рекомендую всем своим пациентам."</p>
+                    <p class="testimonial-author">- Доктор Елена Сидорова</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 OmniScan Technologies. Ваше здоровье - наш приоритет.</p>
+            <p style="margin-top: 10px; opacity: 0.7;">Медицинские чипы нового поколения | Лицензия Минздрава РФ</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctaButton = document.querySelector('.cta-button');
+            
+            ctaButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector('#features').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.feature-card, .testimonial').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

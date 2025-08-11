@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>НЗТ - Безграничные возможности разума</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #2d1b69 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .neural-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 80%, #00d4ff 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, #ff6b6b 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, #4ecdc4 0%, transparent 50%);
+            animation: neural-pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes neural-pulse {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.2; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+            text-decoration: none;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            letter-spacing: 3px;
+        }
+
+        .hero {
+            padding: 150px 0 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: brain-glow 4s ease-in-out infinite;
+        }
+
+        @keyframes brain-glow {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.3; }
+            50% { transform: translateX(-50%) scale(1.2); opacity: 0.6; }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            color: white;
+            padding: 18px 45px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.6);
+            background: linear-gradient(45deg, #0099cc, #00d4ff);
+        }
+
+        .features {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            padding: 100px 0;
+            margin-top: -80px;
+            border-radius: 50px 50px 0 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 255, 255, 0.05));
+            padding: 40px 35px;
+            border-radius: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transform: rotate(-45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+            animation: shimmer 1s ease-in-out;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(-45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(-45deg); }
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.3);
+            border-color: rgba(0, 212, 255, 0.6);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            display: block;
+            filter: drop-shadow(0 0 10px currentColor);
+        }
+
+        .feature-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: #00d4ff;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #00d4ff;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 60px;
+        }
+
+        .benefits {
+            background: linear-gradient(135deg, #1a1a3e 0%, #2d1b69 100%);
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            margin-top: 80px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            padding: 25px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            background: rgba(0, 212, 255, 0.2);
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .benefit-check {
+            font-size: 2rem;
+            margin-right: 20px;
+            color: #4ade80;
+            filter: drop-shadow(0 0 5px #4ade80);
+        }
+
+        .stats {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            padding: 80px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 30px 20px;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .testimonials {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
+            padding: 100px 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .testimonial {
+            background: rgba(0, 212, 255, 0.05);
+            padding: 45px;
+            border-radius: 25px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: #00d4ff;
+            opacity: 0.3;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer {
+            background: #000;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 50px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .brain-pulse {
+            animation: brain-pulse 3s infinite;
+        }
+
+        @keyframes brain-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .glow-text {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(0, 212, 255, 0.8); }
+            to { text-shadow: 0 0 30px rgba(0, 212, 255, 1), 0 0 40px rgba(0, 212, 255, 0.8); }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="neural-bg"></div>
+    
+    <header>
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo glow-text">НЗТ</a>
+                <div>
+                    <span style="color: rgba(255,255,255,0.8); letter-spacing: 1px;">COGNITIVE ENHANCEMENT</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="brain-pulse">НЗТ-48</h1>
+            <p class="hero-subtitle">Раскройте безграничный потенциал вашего разума</p>
+            <a href="#features" class="cta-button">Активировать мозг</a>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Возможности НЗТ</h2>
+            <p class="section-subtitle">Революционный ноотропный препарат для максимального раскрытия потенциала мозга</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🧠</span>
+                    <h3>Повышение интеллекта</h3>
+                    <p>Увеличение IQ на 40-60 пунктов. Ускорение обработки информации, улучшение логического мышления и способности к анализу сложных данных.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3>Молниеносные решения</h3>
+                    <p>Мгновенное принятие оптимальных решений в любых ситуациях. Предвидение последствий и выбор лучших стратегий за доли секунды.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3>Максимальная продуктивность</h3>
+                    <p>Увеличение эффективности работы в 5-10 раз. Способность выполнять несколько задач одновременно без потери качества.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">💡</span>
+                    <h3>Безграничное творчество</h3>
+                    <p>Генерация революционных идей и инновационных решений. Способность находить связи там, где другие их не видят.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🔍</span>
+                    <h3>Фотографическая память</h3>
+                    <p>Запоминание любой информации с первого раза. Мгновенный доступ к любым знаниям из прошлого опыта.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🌟</span>
+                    <h3>Сверхчувствительность</h3>
+                    <p>Улучшенное восприятие окружающего мира. Способность замечать детали, которые ускользают от других.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title">Результаты исследований</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">+300%</span>
+                    <span class="stat-label">Скорость мышления</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">+250%</span>
+                    <span class="stat-label">Продуктивность</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">+400%</span>
+                    <span class="stat-label">Память</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98.7%</span>
+                    <span class="stat-label">Успешность</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Преимущества НЗТ-48</h2>
+            <p class="section-subtitle">Почему выбирают именно наш препарат</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <span class="benefit-check">✅</span>
+                    <div>
+                        <h4>Быстрое действие</h4>
+                        <p>Эффект через 30 минут после приема</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <span class="benefit-check">✅</span>
+                    <div>
+                        <h4>Длительный эффект</h4>
+                        <p>До 12 часов максимальной продуктивности</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <span class="benefit-check">✅</span>
+                    <div>
+                        <h4>Без привыкания</h4>
+                        <p>Безопасная формула без побочных эффектов</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <span class="benefit-check">✅</span>
+                    <div>
+                        <h4>Клинически протестирован</h4>
+                        <p>Более 10 000 успешных испытаний</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <span class="benefit-check">✅</span>
+                    <div>
+                        <h4>Натуральный состав</h4>
+                        <p>Только природные компоненты</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-item">
+                    <span class="benefit-check">✅</span>
+                    <div>
+                        <h4>Гарантия результата</h4>
+                        <p>100% возврат средств при неэффективности</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Отзывы пользователей</h2>
+            <p class="section-subtitle">Реальные истории трансформации разума</p>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">За один день я решил проблему, над которой билась вся наша команда три месяца. НЗТ открыл мне способности, о которых я даже не подозревал. Теперь я CEO компании.</p>
+                    <p class="testimonial-author">- Алексей Морозов, Предприниматель</p>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-text">Сдала экзамены на юридический факультет с максимальными баллами, хотя готовилась всего неделю. НЗТ превратил учебу в увлекательную игру. Информация усваивается моментально.</p>
+                    <p class="testimonial-author">- Мария Волкова, Студентка</p>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-text">Как врач, я скептически относился к ноотропам. Но НЗТ изменил мое мышление кардинально. Диагностирую заболевания с точностью 99%, вижу связи, которые раньше не замечал.</p>
+                    <p class="testimonial-author">- Доктор Сергей Петров</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 НЗТ Technologies. Unlock Your Mind's Potential.</p>
+            <p style="margin-top: 15px; opacity: 0.7;">Cognitive Enhancement Pharmaceuticals | Лицензия FDA: CG-2024-8848</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctaButton = document.querySelector('.cta-button');
+            
+            ctaButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector('#features').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Animated counters for stats
+            const animateCounter = (element, target, duration = 2000) => {
+                let start = 0;
+                const increment = target / (duration / 16);
+                const timer = setInterval(() => {
+                    start += increment;
+                    if (start >= target) {
+                        element.textContent = target + (element.textContent.includes('%') ? '%' : '');
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.floor(start) + (element.textContent.includes('%') ? '%' : '');
+                    }
+                }, 16);
+            };
+            
+            const observerOptions = {
+                threshold: 0.5,
+                rootMargin: '0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.target.classList.contains('stats')) {
+                        const statNumbers = entry.target.querySelectorAll('.stat-number');
+                        statNumbers.forEach(stat => {
+                            const text = stat.textContent;
+                            if (text.includes('+')) {
+                                const number = parseInt(text.replace(/[+%]/g, ''));
+                                animateCounter(stat, number);
+                            } else if (text.includes('.')) {
+                                const number = parseFloat(text);
+                                animateCounter(stat, number);
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+            
+            observer.observe(document.querySelector('.stats'));
+            
+            // Parallax effect for neural background
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const neural = document.querySelector('.neural-bg');
+                neural.style.transform = `translateY(${scrolled * 0.5}px)`;
+            });
+            
+            // Feature cards animation
+            const cardObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0) scale(1)';
+                        }, index * 100);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.feature-card, .testimonial').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px) scale(0.9)';
+                card.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                cardObserver.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

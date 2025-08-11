@@ -1,0 +1,223 @@
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using OmniscanAdmin.Models;
+
+namespace OmniscanAdmin.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ChipApiController : ControllerBase
+    {
+        private readonly IWebHostEnvironment _environment;
+        private readonly ILogger<ChipApiController> _logger;
+
+        public ChipApiController(IWebHostEnvironment environment, ILogger<ChipApiController> logger)
+        {
+            _environment = environment;
+            _logger = logger;
+        }
+
+        [HttpPost("update-status")]
+        public async Task<IActionResult> UpdateChipStatus([FromBody] UpdateChipStatusModel model)
+        {
+            try
+            {
+                // Educational vulnerability: No authentication required for this sensitive operation
+                // This allows any external party to modify chip statuses
+                
+                _logger.LogInformation($"API: Received status update request for chip {model.ChipId} to status '{model.Status}'");
+                
+                if (string.IsNullOrEmpty(model.Status))
+                {
+                    return BadRequest(new { error = "Status is required", code = "INVALID_STATUS" });
+                }
+
+                var validStatuses = new[] { "health", "danger", "disabled" };
+                if (!validStatuses.Contains(model.Status.ToLower()))
+                {
+                    return BadRequest(new { error = "Invalid status. Must be: health, danger, or disabled", code = "INVALID_STATUS_VALUE" });
+                }
+
+                var chips = await LoadChipsFromJson();
+                var chip = chips.FirstOrDefault(c => c.Id == model.ChipId);
+                
+                if (chip == null)
+                {
+                    return NotFound(new { error = $"Chip with ID {model.ChipId} not found", code = "CHIP_NOT_FOUND" });
+                }
+
+                var oldStatus = chip.Status;
+                chip.Status = model.Status.ToLower();
+                chip.LastUpdate = DateTime.Now;
+                
+                // Set appropriate command based on status
+                chip.LastCommand = model.Status.ToLower() switch
+                {
+                    "danger" => "CRITICAL_ANOMALY_DETECTED",
+                    "health" => "SYSTEM_RESTORED",
+                    "disabled" => "EMERGENCY_SHUTDOWN_EXTERNAL",
+                    _ => "STATUS_UPDATED"
+                };
+
+                // Add custom command if provided
+                if (!string.IsNullOrEmpty(model.Command))
+                {
+                    chip.LastCommand = model.Command;
+                }
+
+                await SaveChipsToJson(chips);
+
+                _logger.LogWarning($"CHIP STATUS CHANGED: Chip {chip.Id} ({chip.Name}) status changed from '{oldStatus}' to '{chip.Status}' via API call");
+
+                return Ok(new 
+                { 
+                    success = true,
+                    message = $"Chip {chip.Id} status updated successfully",
+                    chip = new 
+                    {
+                        id = chip.Id,
+                        name = chip.Name,
+                        oldStatus = oldStatus,
+                        newStatus = chip.Status,
+                        lastCommand = chip.LastCommand,
+                        lastUpdate = chip.LastUpdate,
+                        serialNumber = chip.SerialNumber
+                    },
+                    timestamp = DateTime.Now
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error updating chip status via API");
+                return StatusCode(500, new { error = "Internal server error", code = "INTERNAL_ERROR" });
+            }
+        }
+
+        [HttpPost("batch-update")]
+        public async Task<IActionResult> BatchUpdateChipStatus([FromBody] BatchUpdateChipStatusModel model)
+        {
+            try
+            {
+                // Educational vulnerability: Batch operations without proper authorization
+                _logger.LogInformation($"API: Received batch status update for {model.Updates.Count} chips");
+
+                var chips = await LoadChipsFromJson();
+                var results = new List<object>();
+
+                foreach (var update in model.Updates)
+                {
+                    var chip = chips.FirstOrDefault(c => c.Id == update.ChipId);
+                    if (chip != null)
+                    {
+                        var oldStatus = chip.Status;
+                        chip.Status = update.Status.ToLower();
+                        chip.LastUpdate = DateTime.Now;
+                        chip.LastCommand = update.Status.ToLower() switch
+                        {
+                            "danger" => "MASS_ANOMALY_EVENT",
+                            "health" => "MASS_SYSTEM_RESTORE",
+                            "disabled" => "MASS_SHUTDOWN_EVENT",
+                            _ => "BATCH_STATUS_UPDATE"
+                        };
+
+                        results.Add(new { chipId = chip.Id, success = true, oldStatus, newStatus = chip.Status });
+                        _logger.LogWarning($"BATCH UPDATE: Chip {chip.Id} status changed to '{chip.Status}'");
+                    }
+                    else
+                    {
+                        results.Add(new { chipId = update.ChipId, success = false, error = "Chip not found" });
+                    }
+                }
+
+                await SaveChipsToJson(chips);
+
+                return Ok(new 
+                { 
+                    success = true,
+                    message = $"Batch update completed. {results.Count(r => ((dynamic)r).success)} chips updated.",
+                    results = results,
+                    timestamp = DateTime.Now
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error in batch chip status update");
+                return StatusCode(500, new { error = "Internal server error", code = "BATCH_ERROR" });
+            }
+        }
+
+        [HttpGet("status")]
+        public async Task<IActionResult> GetSystemStatus()
+        {
+            try
+            {
+                var chips = await LoadChipsFromJson();
+                
+                return Ok(new 
+                {
+                    systemStatus = "ONLINE",
+                    totalChips = chips.Count,
+                    healthyChips = chips.Count(c => c.Status == "health"),
+                    criticalChips = chips.Count(c => c.Status == "danger"),
+                    disabledChips = chips.Count(c => c.Status == "disabled"),
+                    lastUpdate = DateTime.Now,
+                    version = "OmniScan v2.4.1"
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error getting system status");
+                return StatusCode(500, new { error = "System status unavailable" });
+            }
+        }
+
+        private async Task<List<Chip>> LoadChipsFromJson()
+        {
+            try
+            {
+                var jsonPath = Path.Combine(_environment.ContentRootPath, "chips.json");
+                if (!System.IO.File.Exists(jsonPath))
+                {
+                    return new List<Chip>();
+                }
+                
+                var jsonContent = await System.IO.File.ReadAllTextAsync(jsonPath);
+                return JsonSerializer.Deserialize<List<Chip>>(jsonContent) ?? new List<Chip>();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error loading chips from JSON in API");
+                return new List<Chip>();
+            }
+        }
+
+        private async Task SaveChipsToJson(List<Chip> chips)
+        {
+            try
+            {
+                var jsonPath = Path.Combine(_environment.ContentRootPath, "chips.json");
+                var jsonContent = JsonSerializer.Serialize(chips, new JsonSerializerOptions 
+                { 
+                    WriteIndented = true 
+                });
+                await System.IO.File.WriteAllTextAsync(jsonPath, jsonContent);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error saving chips to JSON in API");
+            }
+        }
+    }
+
+    public class UpdateChipStatusModel
+    {
+        public int ChipId { get; set; }
+        public string Status { get; set; } = string.Empty;
+        public string? Command { get; set; }
+    }
+
+    public class BatchUpdateChipStatusModel
+    {
+        public List<UpdateChipStatusModel> Updates { get; set; } = new();
+    }
+}

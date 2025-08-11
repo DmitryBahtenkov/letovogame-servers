@@ -1,0 +1,242 @@
+@model OmniscanAdmin.Models.Chip
+@{
+    ViewData["Title"] = $"Chip Details - {Model.Name}";
+}
+
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h2>🔬 Chip Analysis: @Model.Name</h2>
+                            <p class="mb-0">Neural Interface Diagnostic Report</p>
+                        </div>
+                        <div>
+                            <a href="@Url.Action("Dashboard")" class="btn btn-outline-light">
+                                ← Back to Dashboard
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chip Status Overview -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">📊 Status Overview</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <h6>Chip ID:</h6>
+                            <p class="h4 text-primary">@Model.Id</p>
+                        </div>
+                        <div class="col-6">
+                            <h6>Serial Number:</h6>
+                            <p class="h5"><code>@Model.SerialNumber</code></p>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-12">
+                            <h6>Current Status:</h6>
+                            @if (Model.Status == "health")
+                            {
+                                <span class="badge bg-success fs-6 p-2">🟢 Neural Interface Healthy</span>
+                            }
+                            else if (Model.Status == "danger")
+                            {
+                                <span class="badge bg-danger fs-6 p-2 pulse">🔴 Critical Neural Anomaly</span>
+                            }
+                            else if (Model.Status == "disabled")
+                            {
+                                <span class="badge bg-secondary fs-6 p-2">⚫ System Disabled</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">🕒 Activity Timeline</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h6>Last Command:</h6>
+                        <p class="bg-light p-2 rounded">
+                            <code>@Model.LastCommand</code>
+                        </p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h6>Last Update:</h6>
+                        <p class="text-muted">
+                            @Model.LastUpdate.ToString("dddd, dd MMMM yyyy HH:mm:ss")
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h6>Time Since Update:</h6>
+                        <p class="text-warning">
+                            @{
+                                var timeDiff = DateTime.Now - Model.LastUpdate;
+                                if (timeDiff.TotalMinutes < 1)
+                                {
+                                    <span>@((int)timeDiff.TotalSeconds) seconds ago</span>
+                                }
+                                else if (timeDiff.TotalHours < 1)
+                                {
+                                    <span>@((int)timeDiff.TotalMinutes) minutes ago</span>
+                                }
+                                else
+                                {
+                                    <span>@((int)timeDiff.TotalHours) hours ago</span>
+                                }
+                            }
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Analytics -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">🧠 Neural Interface Diagnostics</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="text-center p-3 border rounded">
+                                <h6>Synaptic Response</h6>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar bg-success" style="width: @(Model.Status == "health" ? 95 : 45)%"></div>
+                                </div>
+                                <small>@(Model.Status == "health" ? 95 : 45)% Optimal</small>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="text-center p-3 border rounded">
+                                <h6>Data Integrity</h6>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar bg-info" style="width: @(Model.Status == "disabled" ? 0 : 87)%"></div>
+                                </div>
+                                <small>@(Model.Status == "disabled" ? 0 : 87)% Stable</small>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="text-center p-3 border rounded">
+                                <h6>Neural Bandwidth</h6>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar bg-warning" style="width: @(Model.Status == "danger" ? 23 : 78)%"></div>
+                                </div>
+                                <small>@(Model.Status == "danger" ? 23 : 78)% Capacity</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <h6>System Logs (Last 5 entries):</h6>
+                            <div class="bg-dark text-light p-3 rounded" style="font-family: 'Courier New', monospace;">
+                                <div class="mb-1">[2024-01-15 14:32:15] NEURAL_SYNC_INITIATED - @Model.Name</div>
+                                <div class="mb-1">[2024-01-15 14:31:42] BIOMETRIC_SCAN_COMPLETE - Subject vitals normal</div>
+                                <div class="mb-1">[2024-01-15 14:30:18] DATA_STREAM_ACTIVE - Bandwidth: 2.4 GB/s</div>
+                                <div class="mb-1">[2024-01-15 14:29:33] @Model.LastCommand - @Model.SerialNumber</div>
+                                <div class="text-@(Model.Status == "danger" ? "danger" : "success")">[2024-01-15 14:28:01] STATUS_CHECK - @(Model.Status == "health" ? "All systems nominal" : Model.Status == "danger" ? "CRITICAL ANOMALY DETECTED" : "System offline")</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Actions -->
+    @if (ViewBag.UserRole == "admin")
+    {
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-warning">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0">⚠️ Administrative Controls</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-warning">
+                            <strong>🚨 Warning:</strong> These controls directly affect neural interfaces. Use with extreme caution.
+                        </div>
+                        
+                        <div class="btn-group">
+                            @if (Model.Status != "disabled")
+                            {
+                                <button type="button" class="btn btn-danger" onclick="initiateDisable(@Model.Id, '@Model.Name')">
+                                    🔌 Emergency Shutdown
+                                </button>
+                            }
+                            <button type="button" class="btn btn-info">
+                                📡 Force Sync
+                            </button>
+                            <button type="button" class="btn btn-secondary">
+                                📊 Generate Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .pulse {
+        animation: pulse 2s infinite;
+    }
+    
+    @@keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.5; }
+        100% { opacity: 1; }
+    }
+    
+    code {
+        color: #e83e8c;
+    }
+    
+    .progress {
+        height: 10px;
+    }
+</style>
+
+<script>
+    function initiateDisable(chipId, chipName) {
+        if (confirm(`Are you sure you want to disable chip ${chipName}? This action cannot be undone.`)) {
+            // In a real scenario, this would show the disable modal
+            alert('Disable functionality would be implemented here');
+        }
+    }
+    
+    // Auto-refresh every 10 seconds
+    setInterval(function() {
+        if (document.visibilityState === 'visible') {
+            window.location.reload();
+        }
+    }, 10000);
+    
+    console.log('🔍 Chip Details View Loaded');
+    console.log('Chip ID: @Model.Id, Status: @Model.Status');
+</script>

@@ -1,0 +1,84 @@
+@model OmniscanAdmin.Models.LoginModel
+@{
+    ViewData["Title"] = "OmniScan Chip Administration - Login";
+}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-lg border-0" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <h3 class="text-white mb-1">🔬 OmniScan System</h3>
+                        <p class="text-white-50">Chip Administration Portal</p>
+                        <div class="text-warning small">⚠️ Authorized Personnel Only</div>
+                    </div>
+
+                    <form method="post" asp-action="Login">
+                        <div asp-validation-summary="All" class="alert alert-danger" role="alert"></div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Username" class="form-label text-white">Administrator ID</label>
+                            <input asp-for="Username" class="form-control bg-light border-0" placeholder="Enter your admin ID" />
+                            <span asp-validation-for="Username" class="text-warning small"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Password" class="form-label text-white">Access Code</label>
+                            <input asp-for="Password" type="password" class="form-control bg-light border-0" placeholder="Enter your access code" />
+                            <span asp-validation-for="Password" class="text-warning small"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-light btn-lg w-100 mb-3">
+                            🚀 Initialize Chip Interface
+                        </button>
+                    </form>
+
+                    <hr class="text-white-50">
+                    
+                    <div class="text-center">
+                        <small class="text-white-50">
+                            <div>System Status: <span class="text-success">ONLINE</span></div>
+                            <div>Connected Chips: <span class="text-info">5</span></div>
+                            <div>Last Sync: <span id="lastSync"></span></div>
+                        </small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-3 text-center">
+                <small class="text-muted">
+                    OmniScan v2.4.1 | Neural Interface Protocol Enabled<br>
+                    <span class="text-warning">⚠️ Unauthorized access is monitored and logged</span>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        min-height: 100vh;
+    }
+    
+    .card {
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+    }
+    
+    .form-control:focus {
+        border-color: #ffc107;
+        box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+    }
+</style>
+
+<script>
+    // Update last sync time
+    document.getElementById('lastSync').textContent = new Date().toLocaleTimeString();
+    
+    // Update sync time every 30 seconds
+    setInterval(function() {
+        document.getElementById('lastSync').textContent = new Date().toLocaleTimeString();
+    }, 30000);
+</script>

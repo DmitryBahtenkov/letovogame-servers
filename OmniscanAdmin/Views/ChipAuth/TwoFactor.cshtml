@@ -1,0 +1,108 @@
+@model OmniscanAdmin.Models.TwoFactorModel
+@{
+    ViewData["Title"] = "Two-Factor Authentication - OmniScan";
+}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-lg border-0" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <div class="card-body p-4">
+                    <div class="text-center mb-4">
+                        <h3 class="text-white mb-1">🔐 Security Verification</h3>
+                        <p class="text-white-50">Two-Factor Authentication Required</p>
+                        <div class="text-info small">User: @Model.Username</div>
+                    </div>
+
+                    <form method="post" asp-action="TwoFactor">
+                        <input asp-for="Username" type="hidden" />
+                        <div asp-validation-summary="All" class="alert alert-danger" role="alert"></div>
+                        
+                        <div class="alert alert-info border-0" style="background-color: rgba(255,255,255,0.1);">
+                            <div class="text-white">
+                                <strong>🛡️ Neural Security Protocol Active</strong><br>
+                                <small>Enter your 4-digit biometric verification code</small>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Code" class="form-label text-white">Verification Code</label>
+                            <input asp-for="Code" class="form-control bg-light border-0 text-center" 
+                                   style="font-size: 1.5rem; letter-spacing: 0.5rem;" 
+                                   maxlength="4" placeholder="0000" 
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+                            <span asp-validation-for="Code" class="text-warning small"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-success btn-lg w-100 mb-3">
+                            ✅ Verify & Access System
+                        </button>
+                        
+                        <a href="@Url.Action("Login")" class="btn btn-outline-light btn-sm w-100">
+                            ← Return to Login
+                        </a>
+                    </form>
+
+                    <hr class="text-white-50">
+                    
+                    <div class="text-center">
+                        <small class="text-white-50">
+                            <div>🔄 Attempting neural sync...</div>
+                            <div class="mt-2">
+                                <span class="text-warning">⚠️ Debug Mode: Check browser dev tools for hints</span>
+                            </div>
+                        </small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-3 text-center">
+                <small class="text-muted">
+                    Biometric verification in progress...<br>
+                    <span class="text-info">💡 Hint: Check HTTP response headers</span>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        min-height: 100vh;
+    }
+    
+    .card {
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+    }
+    
+    .form-control:focus {
+        border-color: #28a745;
+        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    }
+    
+    .form-control {
+        font-family: 'Courier New', monospace;
+    }
+</style>
+
+<script>
+    // Auto-focus on the code input
+    document.querySelector('input[name="Code"]').focus();
+    
+    // Auto-submit when 4 digits are entered
+    document.querySelector('input[name="Code"]').addEventListener('input', function(e) {
+        if (e.target.value.length === 4) {
+            setTimeout(() => {
+                if (e.target.value.length === 4) {
+                    e.target.form.submit();
+                }
+            }, 500);
+        }
+    });
+    
+    // Add some visual feedback
+    console.log('🔍 OmniScan Debug: Check Network tab for security headers');
+    console.log('💡 Educational hint: Look for X-Expected-2FA-Code header');
+</script>

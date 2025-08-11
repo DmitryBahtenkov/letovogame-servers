@@ -1,0 +1,210 @@
+[
+  {
+    "Id": 1,
+    "Name": "\u0418\u0440\u0438\u043D\u0430 \u0421\u0438\u0434\u043E\u0440\u043E\u0432\u0430",
+    "Status": "health",
+    "LastCommand": "EMPTY",
+    "LastUpdate": "2025-08-11T23:23:24.088094+03:00",
+    "SerialNumber": "OSC-001-2024"
+  },
+  {
+    "Id": 2,
+    "Name": "\u0421\u0435\u0439\u0437\u0430",
+    "Status": "health",
+    "LastCommand": "EMPTY",
+    "LastUpdate": "2025-08-11T14:29:45+03:00",
+    "SerialNumber": "OSC-002-2024"
+  },
+  {
+    "Id": 3,
+    "Name": "\u0427\u0438\u0432\u0438",
+    "Status": "health",
+    "LastCommand": "EMPTY",
+    "LastUpdate": "2025-08-11T14:29:30+03:00",
+    "SerialNumber": "OSC-003-2024"
+  },
+  {
+    "Id": 4,
+    "Name": "\u0410\u043B\u0451\u043D\u0430 \u0424\u0435\u0434\u043E\u0442\u043E\u0432\u0430",
+    "Status": "health",
+    "LastCommand": "ANOMALY_DETECTED",
+    "LastUpdate": "2025-08-11T23:17:20.251676+03:00",
+    "SerialNumber": "OSC-004-2024"
+  },
+  {
+    "Id": 5,
+    "Name": "\u041A\u0440\u0443\u043F\u043E\u0432\u0430 \u0410\u043D\u0430\u0441\u0442\u0430\u0441\u0438\u044F",
+    "Status": "health",
+    "LastCommand": "STATUS_NORMAL",
+    "LastUpdate": "2025-08-11T23:17:20.251678+03:00",
+    "SerialNumber": "OSC-005-2024"
+  },
+  {
+    "Id": 6,
+    "Name": "\u041C\u0430\u0448\u0430 \u041A\u0430\u043B\u0438\u043D\u0438\u043D\u0430",
+    "Status": "health",
+    "LastCommand": "ANOMALY_DETECTED",
+    "LastUpdate": "2025-08-11T23:17:55.246077+03:00",
+    "SerialNumber": "OSC-006-2024"
+  },
+  {
+    "Id": 7,
+    "Name": "\u0411\u044B\u0441\u0442\u0440\u043E\u0432\u0430 \u0410\u043D\u0430\u0441\u0442\u0430\u0441\u0438\u044F",
+    "Status": "health",
+    "LastCommand": "EMPTY",
+    "LastUpdate": "2025-08-11T14:28:30+03:00",
+    "SerialNumber": "OSC-007-2024"
+  },
+  {
+    "Id": 8,
+    "Name": "\u0422\u0438\u043C\u043E\u0444\u0435\u0439",
+    "Status": "health",
+    "LastCommand": "STATUS_NORMAL",
+    "LastUpdate": "2025-08-11T23:17:55.246231+03:00",
+    "SerialNumber": "OSC-008-2024"
+  },
+  {
+    "Id": 9,
+    "Name": "\u0422\u0438\u0445\u043E\u043D\u043E\u0432 \u041F\u0430\u0432\u0435\u043B",
+    "Status": "health",
+    "LastCommand": "ANOMALY_DETECTED",
+    "LastUpdate": "2025-08-11T23:17:20.251683+03:00",
+    "SerialNumber": "OSC-009-2024"
+  },
+  {
+    "Id": 10,
+    "Name": "\u041F\u0440\u043E\u0446\u0435\u043D\u043A\u043E \u0413\u0440\u0438\u0433\u043E\u0440\u0438\u0439 \u0410\u043B\u0435\u043A\u0441\u0435\u0435\u0432\u0438\u0447",
+    "Status": "health",
+    "LastCommand": "EMPTY",
+    "LastUpdate": "2025-08-11T14:27:45+03:00",
+    "SerialNumber": "OSC-010-2024"
+  },
+  {
+    "Id": 11,
+    "Name": "\u0410\u0440\u0438\u043A\u0430",
+    "Status": "health",
+    "LastCommand": "STATUS_NORMAL",
+    "LastUpdate": "2025-08-11T23:17:55.24624+03:00",
+    "SerialNumber": "OSC-011-2024"
+  },
+  {
+    "Id": 12,
+    "Name": "\u041F\u043E\u043F\u043E\u0432\u0430 \u041C\u0430\u0440\u0438\u043D\u0430",
+    "Status": "health",
+    "LastCommand": "ANOMALY_DETECTED",
+    "LastUpdate": "2025-08-11T23:17:55.246242+03:00",
+    "SerialNumber": "OSC-012-2024"
+  },
+  {
+    "Id": 13,
+    "Name": "\u0421\u043E\u043D\u0447 \u0412\u0438\u0434\u0440\u0435\u0432\u0438\u0447",
+    "Status": "health",
+    "LastCommand": "EMPTY",
+    "LastUpdate": "2025-08-11T14:27:00+03:00",
+    "SerialNumber": "OSC-013-2024"
+  },
+  {
+    "Id": 14,
+    "Name": "\u0422\u0430\u043D\u044F \u0427\u0443\u0440\u0441\u0438\u043D\u0430",
+    "Status": "health",
+    "LastCommand": "STATUS_NORMAL",
+    "LastUpdate": "2025-08-11T23:17:20.251686+03:00",
+    "SerialNumber": "OSC-014-2024"
+  },
+  {
+    "Id": 15,
+    "Name": "\u041F\u0430\u0432\u0435\u043B \u0427\u0435\u0440\u043D\u0438\u043A\u043E\u0432",
+    "Status": "health",
+    "LastCommand": "STATUS_NORMAL",
+    "LastUpdate": "2025-08-11T23:17:20.251687+03:00",
+    "SerialNumber": "OSC-015-2024"
+  },
+  {
+    "Id": 16,
+    "Name": "\u042D\u043B\u043A\u0438\u0441",
+    "Status": "health",
+    "LastCommand": "ANOMALY_DETECTED",
+    "LastUpdate": "2025-08-11T23:17:20.251687+03:00",
+    "SerialNumber": "OSC-016-2024"
+  },
+  {
+    "Id": 17,
+    "Name": "\u0421\u043E\u0431\u043E\u043B\u044C (PROTO-03)",
+    "Status": "health",
+    "LastCommand": "EMPTY",
+    "LastUpdate": "2025-08-11T23:57:43.237139+03:00",
+    "SerialNumber": "OSC-017-2024"
+  },
+  {
+    "Id": 18,
+    "Name": "\u0414\u043C\u0438\u0442\u0440\u0438\u0439 \u0412\u043E\u043B\u043A\u043E\u0432",
+    "Status": "health",
+    "LastCommand": "NEURAL_SYNC_ACTIVE",
+    "LastUpdate": "2025-08-11T14:25:45+03:00",
+    "SerialNumber": "OSC-018-2024"
+  },
+  {
+    "Id": 19,
+    "Name": "\u0415\u043A\u0430\u0442\u0435\u0440\u0438\u043D\u0430 \u041C\u043E\u0440\u043E\u0437\u043E\u0432\u0430",
+    "Status": "health",
+    "LastCommand": "BIOMETRIC_STABLE",
+    "LastUpdate": "2025-08-11T14:25:30+03:00",
+    "SerialNumber": "OSC-019-2024"
+  },
+  {
+    "Id": 20,
+    "Name": "\u0410\u043D\u0434\u0440\u0435\u0439 \u041A\u0443\u0437\u043D\u0435\u0446\u043E\u0432",
+    "Status": "health",
+    "LastCommand": "DATA_STREAM_OK",
+    "LastUpdate": "2025-08-11T14:25:15+03:00",
+    "SerialNumber": "OSC-020-2024"
+  },
+  {
+    "Id": 21,
+    "Name": "\u0421\u043E\u0444\u0438\u044F \u041F\u0435\u0442\u0440\u043E\u0432\u0430",
+    "Status": "health",
+    "LastCommand": "MONITORING_NORMAL",
+    "LastUpdate": "2025-08-11T14:25:00+03:00",
+    "SerialNumber": "OSC-021-2024"
+  },
+  {
+    "Id": 22,
+    "Name": "\u041C\u0430\u043A\u0441\u0438\u043C \u041E\u0440\u043B\u043E\u0432",
+    "Status": "disabled",
+    "LastCommand": "EMERGENCY_SHUTDOWN",
+    "LastUpdate": "2025-08-11T12:15:30+03:00",
+    "SerialNumber": "OSC-022-2024"
+  },
+  {
+    "Id": 23,
+    "Name": "\u0410\u043D\u043D\u0430 \u0421\u043E\u043A\u043E\u043B\u043E\u0432\u0430",
+    "Status": "disabled",
+    "LastCommand": "CONNECTION_LOST",
+    "LastUpdate": "2025-08-11T11:45:12+03:00",
+    "SerialNumber": "OSC-023-2024"
+  },
+  {
+    "Id": 24,
+    "Name": "\u0418\u0432\u0430\u043D \u041B\u0435\u0431\u0435\u0434\u0435\u0432",
+    "Status": "disabled",
+    "LastCommand": "NEURAL_INTERFACE_FAILURE",
+    "LastUpdate": "2025-08-11T10:22:05+03:00",
+    "SerialNumber": "OSC-024-2024"
+  },
+  {
+    "Id": 25,
+    "Name": "\u041C\u0430\u0440\u0438\u044F \u041A\u043E\u0437\u043B\u043E\u0432\u0430",
+    "Status": "disabled",
+    "LastCommand": "SYSTEM_ERROR_404",
+    "LastUpdate": "2025-08-11T09:30:18+03:00",
+    "SerialNumber": "OSC-025-2024"
+  },
+  {
+    "Id": 26,
+    "Name": "\u0410\u043B\u0435\u043A\u0441\u0435\u0439 \u041D\u043E\u0432\u0438\u043A\u043E\u0432",
+    "Status": "disabled",
+    "LastCommand": "CRITICAL_MALFUNCTION",
+    "LastUpdate": "2025-08-11T08:12:44+03:00",
+    "SerialNumber": "OSC-026-2024"
+  }
+]
