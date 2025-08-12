@@ -206,5 +206,21 @@
     "LastCommand": "CRITICAL_MALFUNCTION",
     "LastUpdate": "2025-08-11T08:12:44+03:00",
     "SerialNumber": "OSC-026-2024"
+  },
+  {
+    "Id": 27,
+    "Name": "Забалуева Вероника",
+    "Status": "health",
+    "LastCommand": "EMPTY",
+    "LastUpdate": "2025-08-11T08:12:44+03:00",
+    "SerialNumber": "OSC-026-2024"
+  },
+  {
+    "Id": 28,
+    "Name": "Литвинова Полина",
+    "Status": "health",
+    "LastCommand": "EMPTY",
+    "LastUpdate": "2025-08-11T08:12:44+03:00",
+    "SerialNumber": "OSC-026-2024"
   }
 ]
