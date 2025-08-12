@@ -228,9 +228,27 @@ namespace OmniscanAdmin.Controllers
         {
             try
             {
-                var jsonPath = Path.Combine(_environment.ContentRootPath, "chips.json");
-                if (!System.IO.File.Exists(jsonPath))
+                // Try multiple possible paths for chips.json
+                var possiblePaths = new[]
                 {
+                    Path.Combine(_environment.ContentRootPath, "chips.json"),
+                    Path.Combine(Directory.GetCurrentDirectory(), "chips.json"),
+                    "/app/chips.json"
+                };
+
+                string jsonPath = null;
+                foreach (var path in possiblePaths)
+                {
+                    if (System.IO.File.Exists(path))
+                    {
+                        jsonPath = path;
+                        break;
+                    }
+                }
+
+                if (jsonPath == null)
+                {
+                    _logger.LogWarning($"chips.json not found in any of the following paths: {string.Join(", ", possiblePaths)}");
                     return new List<Chip>();
                 }
                 
@@ -248,12 +266,36 @@ namespace OmniscanAdmin.Controllers
         {
             try
             {
-                var jsonPath = Path.Combine(_environment.ContentRootPath, "chips.json");
+                // Try multiple possible paths for chips.json
+                var possiblePaths = new[]
+                {
+                    Path.Combine(_environment.ContentRootPath, "chips.json"),
+                    Path.Combine(Directory.GetCurrentDirectory(), "chips.json"),
+                    "/app/chips.json"
+                };
+
+                string jsonPath = null;
+                foreach (var path in possiblePaths)
+                {
+                    if (System.IO.File.Exists(path))
+                    {
+                        jsonPath = path;
+                        break;
+                    }
+                }
+
+                // If no existing file found, use the first path
+                if (jsonPath == null)
+                {
+                    jsonPath = possiblePaths[0];
+                }
+
                 var jsonContent = JsonSerializer.Serialize(chips, new JsonSerializerOptions 
                 { 
                     WriteIndented = true 
                 });
                 await System.IO.File.WriteAllTextAsync(jsonPath, jsonContent);
+                _logger.LogInformation($"Successfully saved chips data to: {jsonPath}");
             }
             catch (Exception ex)
             {
