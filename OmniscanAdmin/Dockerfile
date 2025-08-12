@@ -1,5 +1,4 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER $APP_UID
 WORKDIR /app
 EXPOSE 8002
 
@@ -19,7 +18,8 @@ RUN dotnet publish "./OmniscanAdmin.csproj" -c $BUILD_CONFIGURATION -o /app/publ
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-# Copy data files
+# Copy data files with write permissions
 COPY ["OmniscanAdmin/chips.json", "./chips.json"]
 COPY ["OmniscanAdmin/users.json", "./users.json"]
+RUN chmod 666 /app/chips.json /app/users.json
 ENTRYPOINT ["dotnet", "OmniscanAdmin.dll"]
