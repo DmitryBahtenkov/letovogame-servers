@@ -129,10 +129,10 @@
   },
   {
     "Id": 17,
-    "Name": "PROTO-03 Соболь",
-    "Status": "health",
-    "LastCommand": "EMPTY",
-    "LastUpdate": "2025-08-12T00:39:54.364152+03:00",
+    "Name": "PROTO-03 \u0421\u043E\u0431\u043E\u043B\u044C",
+    "Status": "danger",
+    "LastCommand": "string",
+    "LastUpdate": "2025-08-12T16:27:20.476405+03:00",
     "SerialNumber": "OSC-017-2024"
   },
   {
@@ -209,7 +209,7 @@
   },
   {
     "Id": 27,
-    "Name": "Proto-Beta Тестер",
+    "Name": "Proto-Beta \u0422\u0435\u0441\u0442\u0435\u0440",
     "Status": "health",
     "LastCommand": "EMPTY",
     "LastUpdate": "2025-08-11T08:12:44+03:00",
@@ -217,7 +217,7 @@
   },
   {
     "Id": 28,
-    "Name": "Литвинова Полина",
+    "Name": "\u041B\u0438\u0442\u0432\u0438\u043D\u043E\u0432\u0430 \u041F\u043E\u043B\u0438\u043D\u0430",
     "Status": "health",
     "LastCommand": "EMPTY",
     "LastUpdate": "2025-08-11T08:12:44+03:00",
