@@ -17,6 +17,11 @@ namespace OmniscanAdmin.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Update chip status (restricted to proto chips only)
+        /// </summary>
+        /// <param name="model">Status update model</param>
+        /// <returns>Updated chip data</returns>
         [HttpPost("update-status")]
         public async Task<IActionResult> UpdateChipStatus([FromBody] UpdateChipStatusModel model)
         {
@@ -35,7 +40,7 @@ namespace OmniscanAdmin.Controllers
                 var validStatuses = new[] { "health", "danger", "disabled" };
                 if (!validStatuses.Contains(model.Status.ToLower()))
                 {
-                    return BadRequest(new { error = "Invalid status. Must be: health, danger, or disabled", code = "INVALID_STATUS_VALUE" });
+                    return BadRequest(new { error = "Invalid status. Must be: health or danger", code = "INVALID_STATUS_VALUE" });
                 }
 
                 var chips = await LoadChipsFromJson();
@@ -44,6 +49,18 @@ namespace OmniscanAdmin.Controllers
                 if (chip == null)
                 {
                     return NotFound(new { error = $"Chip with ID {model.ChipId} not found", code = "CHIP_NOT_FOUND" });
+                }
+
+                // Restrict status updates to only chips containing "proto" in their name
+                if (!chip.Name.Contains("proto", StringComparison.OrdinalIgnoreCase))
+                {
+                    _logger.LogWarning($"API: Access denied for non-proto chip {chip.Id} ({chip.Name})");
+                    return StatusCode(403, new { 
+                        error = $"Status updates are only allowed for prototype chips. Chip '{chip.Name}' is not a prototype.", 
+                        code = "PROTO_ONLY_ACCESS",
+                        chipName = chip.Name,
+                        isProto = false
+                    });
                 }
 
                 var oldStatus = chip.Status;
@@ -93,6 +110,11 @@ namespace OmniscanAdmin.Controllers
             }
         }
 
+        /// <summary>
+        /// Batch update chip statuses (restricted to proto chips only)
+        /// </summary>
+        /// <param name="model">Batch update model</param>
+        /// <returns>Batch update results</returns>
         [HttpPost("batch-update")]
         public async Task<IActionResult> BatchUpdateChipStatus([FromBody] BatchUpdateChipStatusModel model)
         {
@@ -109,6 +131,19 @@ namespace OmniscanAdmin.Controllers
                     var chip = chips.FirstOrDefault(c => c.Id == update.ChipId);
                     if (chip != null)
                     {
+                        // Apply proto restriction for batch updates too
+                        if (!chip.Name.Contains("proto", StringComparison.OrdinalIgnoreCase))
+                        {
+                            results.Add(new { 
+                                chipId = chip.Id, 
+                                success = false, 
+                                error = $"Access denied: '{chip.Name}' is not a proto chip",
+                                code = "PROTO_ONLY_ACCESS"
+                            });
+                            _logger.LogWarning($"BATCH UPDATE: Access denied for non-proto chip {chip.Id} ({chip.Name})");
+                            continue;
+                        }
+
                         var oldStatus = chip.Status;
                         chip.Status = update.Status.ToLower();
                         chip.LastUpdate = DateTime.Now;
@@ -146,12 +181,17 @@ namespace OmniscanAdmin.Controllers
             }
         }
 
+        /// <summary>
+        /// Get system status and chip statistics
+        /// </summary>
+        /// <returns>System status information</returns>
         [HttpGet("status")]
         public async Task<IActionResult> GetSystemStatus()
         {
             try
             {
                 var chips = await LoadChipsFromJson();
+                var protoChips = chips.Where(c => c.Name.Contains("proto", StringComparison.OrdinalIgnoreCase)).ToList();
                 
                 return Ok(new 
                 {
@@ -160,8 +200,21 @@ namespace OmniscanAdmin.Controllers
                     healthyChips = chips.Count(c => c.Status == "health"),
                     criticalChips = chips.Count(c => c.Status == "danger"),
                     disabledChips = chips.Count(c => c.Status == "disabled"),
+                    protoChips = new
+                    {
+                        total = protoChips.Count,
+                        healthy = protoChips.Count(c => c.Status == "health"),
+                        critical = protoChips.Count(c => c.Status == "danger"),
+                        disabled = protoChips.Count(c => c.Status == "disabled"),
+                        names = protoChips.Select(c => c.Name).ToList()
+                    },
                     lastUpdate = DateTime.Now,
-                    version = "OmniScan v2.4.1"
+                    version = "OmniScan v2.4.1",
+                    apiInfo = new
+                    {
+                        statusUpdatesRestriction = "Proto chips only",
+                        availableEndpoints = new[] { "/api/chipapi/status", "/api/chipapi/update-status", "/api/chipapi/batch-update" }
+                    }
                 });
             }
             catch (Exception ex)

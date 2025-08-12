@@ -129,7 +129,7 @@
   },
   {
     "Id": 17,
-    "Name": "\u0421\u043E\u0431\u043E\u043B\u044C (PROTO-03)",
+    "Name": "PROTO-03 Соболь",
     "Status": "health",
     "LastCommand": "EMPTY",
     "LastUpdate": "2025-08-12T00:39:54.364152+03:00",
@@ -209,7 +209,7 @@
   },
   {
     "Id": 27,
-    "Name": "Забалуева Вероника",
+    "Name": "Proto-Beta Тестер",
     "Status": "health",
     "LastCommand": "EMPTY",
     "LastUpdate": "2025-08-11T08:12:44+03:00",

@@ -6,6 +6,18 @@ builder.WebHost.UseUrls("http://0.0.0.0:8002");
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Add Swagger/OpenAPI services
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "OmniScan Chip Management API",
+        Version = "v1",
+        Description = "API for managing OmniScan medical chip status and monitoring"
+    });
+});
+
 // Add session support for authentication
 builder.Services.AddSession(options =>
 {
@@ -36,6 +48,14 @@ app.Use(async (context, next) =>
 
 // Skip HTTPS redirection in production for Docker
 // app.UseHttpsRedirection(); 
+
+// Enable Swagger in all environments for cybersecurity education
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "OmniScan API v1");
+    c.RoutePrefix = "swagger";
+});
 
 app.UseStaticFiles();
 app.UseRouting();
