@@ -227,7 +227,8 @@ namespace OmniscanAdmin.Controllers
                 {
                     return (false, currentCodeInfo.ProblemDescription, $"Chip currently has ProblemCode {chip.StatusCode}. You must provide the corresponding FixedCode to resolve the issue.");
                 }
-                
+
+                chip.Status = "health";
                 // Valid FixedCode provided for current ProblemCode
                 return (true, currentCodeInfo.FixedDescription, string.Empty);
             }
