@@ -54,6 +54,15 @@ namespace OmniscanAdmin.Controllers
             HttpContext.Session.SetString("AuthenticatedUser", model.Username);
             HttpContext.Session.SetString("UserRole", user.Role);
             
+            // Skip 2FA for admin role
+            if (user.Role == "admin")
+            {
+                HttpContext.Session.SetString("FullyAuthenticated", "true");
+                HttpContext.Session.SetString("ChipAccessLevel", "monitoring");
+                _logger.LogInformation($"Admin user {model.Username} logged in without 2FA requirement");
+                return RedirectToAction("Dashboard", "ChipManagement");
+            }
+            
             return RedirectToAction("TwoFactor");
         }
 

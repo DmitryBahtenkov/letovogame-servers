@@ -68,29 +68,36 @@ namespace OmniscanAdmin.Controllers
                 return RedirectToAction("Dashboard");
             }
 
-            // Get master disable code from configuration
-            var masterDisableCode = _configuration["OmniScanSettings:MasterDisableCode"];
+            // Load chips to get the specific chip's disable code
+            var chips = await LoadChipsFromJson();
+            var chip = chips.FirstOrDefault(c => c.Id == model.ChipId);
             
-            // Add debug headers (without exposing the actual code)
-            Response.Headers.Add("X-Chip-Debug-Info", $"Universal master disable code required for chip {model.ChipId}");
-            Response.Headers.Add("X-Security-Level", "MAXIMUM");
-            Response.Headers.Add("X-Code-Type", "UNIVERSAL_MASTER");
-
-            if (string.IsNullOrEmpty(masterDisableCode))
+            if (chip == null)
             {
-                TempData["Error"] = "System configuration error: Master disable code not configured";
-                _logger.LogError("Master disable code not found in configuration");
+                TempData["Error"] = "Chip not found in neural network database";
                 return RedirectToAction("Dashboard");
             }
 
-            if (model.DisableCode != masterDisableCode)
+            // Add debug headers
+            Response.Headers.Add("X-Chip-Debug-Info", $"Chip-specific disable code required for chip {model.ChipId}");
+            Response.Headers.Add("X-Security-Level", "MAXIMUM");
+            Response.Headers.Add("X-Code-Type", "CHIP_SPECIFIC");
+
+            if (string.IsNullOrEmpty(chip.DisableCode))
+            {
+                TempData["Error"] = "System configuration error: Chip disable code not configured";
+                _logger.LogError($"Disable code not found for chip {model.ChipId}");
+                return RedirectToAction("Dashboard");
+            }
+
+            if (model.DisableCode != chip.DisableCode)
             {
                 // Track failed attempts (educational vulnerability: no rate limiting)
                 var failedAttempts = HttpContext.Session.GetInt32("DisableFailedAttempts") ?? 0;
                 failedAttempts++;
                 HttpContext.Session.SetInt32("DisableFailedAttempts", failedAttempts);
                 
-                TempData["Error"] = $"Invalid master disable code. Failed attempts: {failedAttempts}";
+                TempData["Error"] = $"Invalid chip disable code. Failed attempts: {failedAttempts}";
                 _logger.LogWarning($"Failed disable attempt #{failedAttempts} for chip {model.ChipId} by user {HttpContext.Session.GetString("AuthenticatedUser")}");
                 return RedirectToAction("Dashboard");
             }
@@ -99,24 +106,14 @@ namespace OmniscanAdmin.Controllers
             HttpContext.Session.Remove("DisableFailedAttempts");
 
             // Disable the chip
-            var chips = await LoadChipsFromJson();
-            var chip = chips.FirstOrDefault(c => c.Id == model.ChipId);
+            chip.Status = "disabled";
+            chip.LastCommand = "EMERGENCY_SHUTDOWN_INITIATED";
+            chip.LastUpdate = DateTime.Now;
             
-            if (chip != null)
-            {
-                chip.Status = "disabled";
-                chip.LastCommand = "EMERGENCY_SHUTDOWN_INITIATED";
-                chip.LastUpdate = DateTime.Now;
-                
-                await SaveChipsToJson(chips);
-                
-                TempData["Success"] = $"🚨 CRITICAL: Chip {chip.Name} ({chip.SerialNumber}) has been emergency disabled!";
-                _logger.LogCritical($"EMERGENCY SHUTDOWN: Chip {chip.Id} ({chip.Name}) disabled by admin {HttpContext.Session.GetString("AuthenticatedUser")} using master code");
-            }
-            else
-            {
-                TempData["Error"] = "Chip not found in neural network database";
-            }
+            await SaveChipsToJson(chips);
+            
+            TempData["Success"] = $"🚨 CRITICAL: Chip {chip.Name} ({chip.SerialNumber}) has been emergency disabled!";
+            _logger.LogCritical($"EMERGENCY SHUTDOWN: Chip {chip.Id} ({chip.Name}) disabled by admin {HttpContext.Session.GetString("AuthenticatedUser")} using chip-specific code");
 
             return RedirectToAction("Dashboard");
         }

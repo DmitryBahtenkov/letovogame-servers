@@ -32,9 +32,11 @@ namespace OmniscanAdmin.Models
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Status { get; set; } = "health";
+        public int StatusCode { get; set; }
         public string LastCommand { get; set; } = string.Empty;
         public DateTime LastUpdate { get; set; }
         public string SerialNumber { get; set; } = string.Empty;
+        public string DisableCode { get; set; } = string.Empty;
     }
 
     public class DisableChipModel
@@ -56,10 +58,21 @@ namespace OmniscanAdmin.Models
         public string Status { get; set; } = string.Empty;
 
         public string? Command { get; set; }
+
+        public int? StatusCode { get; set; }
     }
 
     public class BatchUpdateChipStatusModel
     {
         public List<UpdateChipStatusModel> Updates { get; set; } = new();
+    }
+
+    public class StatusCodeInfo
+    {
+        public string Category { get; set; } = string.Empty;
+        public int ProblemCode { get; set; }
+        public string ProblemDescription { get; set; } = string.Empty;
+        public int FixedCode { get; set; }
+        public string FixedDescription { get; set; } = string.Empty;
     }
 }
