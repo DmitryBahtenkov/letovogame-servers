@@ -27,13 +27,17 @@ namespace OmniscanAdmin.Controllers
         {
             try
             {
+                if (!SystemConfig.AllowDisable)
+                {
+                    return BadRequest("Cannot update status");
+                }
                 // This allows any external party to modify chip statuses
 
                 _logger.LogInformation($"API: Received status update request for chip {model.ChipId}");
-                
+
                 var chips = await LoadChipsFromJson();
                 var chip = chips.FirstOrDefault(c => c.Id == model.ChipId);
-                
+
                 if (chip == null)
                 {
                     return NotFound(new { error = $"Chip with ID {model.ChipId} not found", code = "CHIP_NOT_FOUND" });
@@ -41,7 +45,7 @@ namespace OmniscanAdmin.Controllers
 
                 // Load status codes for validation and assignment
                 var statusCodes = await LoadStatusCodesFromJson();
-                
+
                 // Validate StatusCode if provided
                 if (model.StatusCode.HasValue)
                 {
@@ -56,7 +60,7 @@ namespace OmniscanAdmin.Controllers
                 var oldStatus = chip.Status;
                 var oldStatusCode = chip.StatusCode;
                 chip.LastUpdate = DateTime.Now;
-                
+
                 // Assign StatusCode based on status and validation
                 if (model.StatusCode.HasValue)
                 {
@@ -66,18 +70,19 @@ namespace OmniscanAdmin.Controllers
                 {
                     return BadRequest(new { error = "Status is required", code = "INVALID_STATUS" });
                 }
-                
+
                 chip.LastCommand = string.IsNullOrEmpty(chip.LastCommand) ? "EMPTY" : chip.LastCommand;
 
                 await SaveChipsToJson(chips);
 
-                _logger.LogWarning($"CHIP STATUS CHANGED: Chip {chip.Id} ({chip.Name}) status changed from '{oldStatus}' to '{chip.Status}', StatusCode from {oldStatusCode} to {chip.StatusCode} via API call");
+                _logger.LogWarning(
+                    $"CHIP STATUS CHANGED: Chip {chip.Id} ({chip.Name}) status changed from '{oldStatus}' to '{chip.Status}', StatusCode from {oldStatusCode} to {chip.StatusCode} via API call");
 
-                return Ok(new 
-                { 
+                return Ok(new
+                {
                     success = true,
                     message = $"Chip {chip.Id} status updated successfully",
-                    chip = new 
+                    chip = new
                     {
                         id = chip.Id,
                         name = chip.Name,
@@ -123,10 +128,11 @@ namespace OmniscanAdmin.Controllers
 
                 if (jsonPath == null)
                 {
-                    _logger.LogWarning($"chips.json not found in any of the following paths: {string.Join(", ", possiblePaths)}");
+                    _logger.LogWarning(
+                        $"chips.json not found in any of the following paths: {string.Join(", ", possiblePaths)}");
                     return new List<Chip>();
                 }
-                
+
                 var jsonContent = await System.IO.File.ReadAllTextAsync(jsonPath);
                 return JsonSerializer.Deserialize<List<Chip>>(jsonContent) ?? new List<Chip>();
             }
@@ -165,9 +171,9 @@ namespace OmniscanAdmin.Controllers
                     jsonPath = possiblePaths[0];
                 }
 
-                var jsonContent = JsonSerializer.Serialize(chips, new JsonSerializerOptions 
-                { 
-                    WriteIndented = true 
+                var jsonContent = JsonSerializer.Serialize(chips, new JsonSerializerOptions
+                {
+                    WriteIndented = true
                 });
                 await System.IO.File.WriteAllTextAsync(jsonPath, jsonContent);
                 _logger.LogInformation($"Successfully saved chips data to: {jsonPath}");
@@ -201,10 +207,11 @@ namespace OmniscanAdmin.Controllers
 
                 if (jsonPath == null)
                 {
-                    _logger.LogWarning($"codes.json not found in any of the following paths: {string.Join(", ", possiblePaths)}");
+                    _logger.LogWarning(
+                        $"codes.json not found in any of the following paths: {string.Join(", ", possiblePaths)}");
                     return new List<StatusCodeInfo>();
                 }
-                
+
                 var jsonContent = await System.IO.File.ReadAllTextAsync(jsonPath);
                 return JsonSerializer.Deserialize<List<StatusCodeInfo>>(jsonContent) ?? new List<StatusCodeInfo>();
             }
@@ -215,17 +222,20 @@ namespace OmniscanAdmin.Controllers
             }
         }
 
-        private async Task<(bool IsValid, string Text, string ErrorMessage)> ValidateAndAssignStatusCode(Chip chip, int providedCode, List<StatusCodeInfo> statusCodes)
+        private async Task<(bool IsValid, string Text, string ErrorMessage)> ValidateAndAssignStatusCode(Chip chip,
+            int providedCode, List<StatusCodeInfo> statusCodes)
         {
             // Check if the current chip has a ProblemCode set
-            var currentCodeInfo = statusCodes.FirstOrDefault(sc => sc.ProblemCode == chip.StatusCode || sc.FixedCode == chip.StatusCode);
-            
+            var currentCodeInfo = statusCodes.FirstOrDefault(sc =>
+                sc.ProblemCode == chip.StatusCode || sc.FixedCode == chip.StatusCode);
+
             if (currentCodeInfo != null && statusCodes.Any(sc => sc.ProblemCode == chip.StatusCode))
             {
                 // Current chip has a ProblemCode, check if provided code is the correct FixedCode
                 if (providedCode != currentCodeInfo.FixedCode)
                 {
-                    return (false, currentCodeInfo.ProblemDescription, $"Chip currently has ProblemCode {chip.StatusCode}. You must provide the corresponding FixedCode to resolve the issue.");
+                    return (false, currentCodeInfo.ProblemDescription,
+                        $"Chip currently has ProblemCode {chip.StatusCode}. You must provide the corresponding FixedCode to resolve the issue.");
                 }
 
                 chip.Status = "health";
@@ -234,7 +244,8 @@ namespace OmniscanAdmin.Controllers
             }
 
             // No current ProblemCode, validate that the provided code exists and matches status
-            var codeInfo = statusCodes.FirstOrDefault(sc => sc.ProblemCode == providedCode || sc.FixedCode == providedCode);
+            var codeInfo =
+                statusCodes.FirstOrDefault(sc => sc.ProblemCode == providedCode || sc.FixedCode == providedCode);
             if (codeInfo == null)
             {
                 return (false, string.Empty, $"StatusCode {providedCode} not found in the codes database.");
@@ -255,21 +266,35 @@ namespace OmniscanAdmin.Controllers
             return (true, isProblemCode ? codeInfo.ProblemDescription : codeInfo.FixedDescription, string.Empty);
         }
 
-        private async Task<int> GetRandomStatusCodeForStatus(string status, List<StatusCodeInfo> statusCodes)
+        /// <summary>
+        /// Toggle the allow disable functionality
+        /// </summary>
+        /// <param name="model">Allow disable model</param>
+        /// <returns>Updated configuration status</returns>
+        [HttpPost("allow_disable")]
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public IActionResult SetAllowDisable([FromBody] AllowDisableModel model)
         {
-            var random = new Random();
-            
-            if (status == "danger")
+            try
             {
-                // Get random ProblemCode
-                var problemCodes = statusCodes.Select(sc => sc.ProblemCode).ToList();
-                return problemCodes.Count > 0 ? problemCodes[random.Next(problemCodes.Count)] : 36747; // Default health code
+                _logger.LogInformation($"API: Setting allow_disable to {model.AllowDisable}");
+
+                SystemConfig.AllowDisable = model.AllowDisable;
+
+                _logger.LogWarning($"SYSTEM CONFIG CHANGED: Allow disable functionality set to {model.AllowDisable}");
+
+                return Ok(new
+                {
+                    success = true,
+                    message = $"Allow disable functionality {(model.AllowDisable ? "enabled" : "disabled")}",
+                    allowDisable = SystemConfig.AllowDisable,
+                    timestamp = DateTime.Now
+                });
             }
-            else
+            catch (Exception ex)
             {
-                // Get random FixedCode  
-                var fixedCodes = statusCodes.Select(sc => sc.FixedCode).ToList();
-                return fixedCodes.Count > 0 ? fixedCodes[random.Next(fixedCodes.Count)] : 36747; // Default health code
+                _logger.LogError(ex, "Error updating allow disable configuration");
+                return StatusCode(500, new { error = "Internal server error", code = "INTERNAL_ERROR" });
             }
         }
     }
@@ -283,5 +308,10 @@ namespace OmniscanAdmin.Controllers
     public class BatchUpdateChipStatusModel
     {
         public List<UpdateChipStatusModel> Updates { get; set; } = new();
+    }
+
+    public class AllowDisableModel
+    {
+        public bool AllowDisable { get; set; }
     }
 }

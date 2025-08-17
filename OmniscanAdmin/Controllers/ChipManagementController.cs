@@ -49,6 +49,7 @@ namespace OmniscanAdmin.Controllers
             ViewBag.IsAdmin = userRole == "admin";
             ViewBag.IsOldRole = userRole == "old";
             ViewBag.FilteredCount = chips.Count;
+            ViewBag.AllowDisable = SystemConfig.AllowDisable;
 
             return View(chips);
         }
@@ -65,6 +66,14 @@ namespace OmniscanAdmin.Controllers
             if (userRole != "admin")
             {
                 TempData["Error"] = "Access denied: Admin privileges required to disable chips";
+                return RedirectToAction("Dashboard");
+            }
+
+            // Check if disable functionality is allowed
+            if (!SystemConfig.AllowDisable)
+            {
+                TempData["Error"] = "Disable functionality is currently disabled by system configuration";
+                _logger.LogWarning($"Disable attempt blocked by system configuration for user {HttpContext.Session.GetString("AuthenticatedUser")}");
                 return RedirectToAction("Dashboard");
             }
 

@@ -91,13 +91,30 @@
                         
                         @if (ViewBag.IsAdmin)
                         {
-                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#emergencyModal">
-                                🚨 Emergency Shutdown Protocol
-                            </button>
+                            @if (ViewBag.AllowDisable)
+                            {
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#emergencyModal">
+                                    🚨 Emergency Shutdown Protocol
+                                </button>
+                            }
+                            else
+                            {
+                                <button type="button" class="btn btn-secondary" disabled title="Emergency shutdown is currently disabled">
+                                    🔒 Emergency Protocol Locked
+                                </button>
+                            }
                         }
                         
                         <div class="ms-auto">
                             <span class="badge bg-success pulse">🟢 System Online</span>
+                            @if (ViewBag.AllowDisable)
+                            {
+                                <span class="badge bg-warning">🔓 Disable Enabled</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">🔒 Disable Locked</span>
+                            }
                             <span class="text-muted small">Last update: <span id="lastUpdate"></span></span>
                         </div>
                     </div>
@@ -186,10 +203,20 @@
                                                 
                                                 @if (ViewBag.IsAdmin && chip.Status != "disabled")
                                                 {
-                                                    <button type="button" class="btn btn-outline-danger btn-sm" 
-                                                            onclick="initiateDisable(@chip.Id, '@chip.Name')">
-                                                        🔌 Disable
-                                                    </button>
+                                                    @if (ViewBag.AllowDisable)
+                                                    {
+                                                        <button type="button" class="btn btn-outline-danger btn-sm" 
+                                                                onclick="initiateDisable(@chip.Id, '@chip.Name')">
+                                                            🔌 Disable
+                                                        </button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button type="button" class="btn btn-outline-secondary btn-sm" disabled 
+                                                                title="Disable functionality is currently disabled">
+                                                            🔒 Disable Locked
+                                                        </button>
+                                                    }
                                                 }
                                             </div>
                                         </td>
@@ -223,7 +250,7 @@
                     <div class="mb-3">
                         <label for="disableCode" class="form-label">Master Emergency Disable Code</label>
                         <input type="text" class="form-control" name="DisableCode" id="disableCode" 
-                               placeholder="Enter universal master disable code (32 chars)" maxlength="50" required />
+                               placeholder="Enter disable code" maxlength="50" required />
                         <div class="form-text">
                             🔐 <strong>Universal Master Code Required</strong><br>
                             ⚠️ This is the same code for ALL chip emergency shutdowns<br>
@@ -259,7 +286,15 @@
 </style>
 
 <script>
+    var allowDisable = @Html.Raw(ViewBag.AllowDisable.ToString().ToLower());
+    
     function initiateDisable(chipId, chipName) {
+        if (!allowDisable) {
+            alert('❌ Disable functionality is currently locked by system configuration');
+            console.log('🔒 Disable attempt blocked: System configuration prevents disable operations');
+            return;
+        }
+        
         document.getElementById('chipIdInput').value = chipId;
         document.getElementById('chipNameDisplay').textContent = chipName;
         document.getElementById('disableCode').value = '';
