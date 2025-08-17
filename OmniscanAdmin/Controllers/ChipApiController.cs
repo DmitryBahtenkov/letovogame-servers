@@ -36,7 +36,7 @@ namespace OmniscanAdmin.Controllers
                 _logger.LogInformation($"API: Received status update request for chip {model.ChipId}");
 
                 var chips = await LoadChipsFromJson();
-                var chip = chips.FirstOrDefault(c => c.Id == model.ChipId);
+                var chip = chips.FirstOrDefault(c => c.Id == model.ChipId && c.Status != "disabled");
 
                 if (chip == null)
                 {

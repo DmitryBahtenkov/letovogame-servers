@@ -2,7 +2,7 @@ namespace OmniscanAdmin.Models
 {
     public static class SystemConfig
     {
-        private static bool _allowDisable = true;
+        private static bool _allowDisable = false;
         private static readonly object _lock = new object();
 
         public static bool AllowDisable

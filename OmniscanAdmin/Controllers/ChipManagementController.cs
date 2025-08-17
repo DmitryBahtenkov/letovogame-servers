@@ -80,6 +80,12 @@ namespace OmniscanAdmin.Controllers
             // Load chips to get the specific chip's disable code
             var chips = await LoadChipsFromJson();
             var chip = chips.FirstOrDefault(c => c.Id == model.ChipId);
+
+            if (chip.Status == "danger")
+            {
+                TempData["Error"] = "Cannot disable chip";
+                return RedirectToAction("Dashboard");
+            }
             
             if (chip == null)
             {
