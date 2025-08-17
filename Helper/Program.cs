@@ -11,8 +11,9 @@ if (chips != null)
 {
     foreach (var chip in chips)
     {
-        chip.DisableCode = new string(Enumerable.Repeat(chars, 8)
-            .Select(s => s[random.Next(s.Length)]).ToArray());
+        var lastId = chip.Id;
+        chip.Id = Random.Shared.Next(1, 400);
+        chip.SerialNumber = chip.SerialNumber.Replace(lastId.ToString(), chip.Id.ToString());
     }
 
     var options = new JsonSerializerOptions
