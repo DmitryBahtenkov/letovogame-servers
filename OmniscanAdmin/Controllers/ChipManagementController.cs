@@ -134,26 +134,6 @@ namespace OmniscanAdmin.Controllers
             {
                 return RedirectToAction("Login", "ChipAuth");
             }
-
-            // // Educational vulnerability: Anyone can trigger chip data refresh
-            // // No additional authorization check for this sensitive operation
-            //
-            // var chips = await LoadChipsFromJson();
-            //
-            // // Simulate data refresh from "remote chip servers"
-            // foreach (var chip in chips.Where(c => c.Status != "disabled"))
-            // {
-            //     // Simulate random status changes for demonstration
-            //     var random = new Random();
-            //     if (random.Next(1, 100) > 80) // 20% chance of status change
-            //     {
-            //         chip.Status = random.Next(1, 100) > 50 ? "health" : "danger";
-            //         chip.LastCommand = chip.Status == "danger" ? "ANOMALY_DETECTED" : "STATUS_NORMAL";
-            //         chip.LastUpdate = DateTime.Now;
-            //     }
-            // }
-            //
-            // await SaveChipsToJson(chips);
             
             TempData["Success"] = "Chip data refreshed from remote servers";
             return RedirectToAction("Dashboard");
@@ -198,7 +178,9 @@ namespace OmniscanAdmin.Controllers
                 }
                 
                 var jsonContent = await System.IO.File.ReadAllTextAsync(jsonPath);
-                return JsonSerializer.Deserialize<List<Chip>>(jsonContent) ?? new List<Chip>();
+                return JsonSerializer.Deserialize<List<Chip>>(jsonContent)
+                    .OrderBy(x => x.Name)
+                    .ToList() ?? new List<Chip>();
             }
             catch (Exception ex)
             {

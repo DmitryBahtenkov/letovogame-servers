@@ -91,18 +91,9 @@
                         
                         @if (ViewBag.IsAdmin)
                         {
-                            @if (ViewBag.AllowDisable)
-                            {
-                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#emergencyModal">
-                                    🚨 Emergency Shutdown Protocol
-                                </button>
-                            }
-                            else
-                            {
-                                <button type="button" class="btn btn-secondary" disabled title="Emergency shutdown is currently disabled">
-                                    🔒 Emergency Protocol Locked
-                                </button>
-                            }
+                            <button type="button" class="btn btn-secondary" disabled title="Emergency shutdown is currently disabled">
+                                🔒 Emergency Protocol Locked
+                            </button>
                         }
                         
                         <div class="ms-auto">

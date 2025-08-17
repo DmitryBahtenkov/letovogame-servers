@@ -6,7 +6,7 @@
     "StatusCode": 242789,
     "LastCommand": "\u0421\u0438\u0441\u0442\u0435\u043C\u0430 \u0437\u0430\u0449\u0438\u0449\u0435\u043D\u0430, \u043D\u0435\u0441\u0430\u043D\u043A\u0446\u0438\u043E\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0439 \u0434\u043E\u0441\u0442\u0443\u043F \u0437\u0430\u0431\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u0430\u043D.",
     "LastUpdate": "2025-08-17T22:06:35.23414+03:00",
-    "SerialNumber": "OSC-001-2024",
+    "SerialNumber": "OSC-001-2025",
     "DisableCode": "SUGMLNNQ"
   },
   {
@@ -16,7 +16,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T14:29:45+03:00",
-    "SerialNumber": "OSC-002-2024",
+    "SerialNumber": "OSC-002-2025",
     "DisableCode": "DLVNIB3M"
   },
   {
@@ -26,7 +26,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T14:29:30+03:00",
-    "SerialNumber": "OSC-003-2024",
+    "SerialNumber": "OSC-003-2025",
     "DisableCode": "NPK46OAX"
   },
   {
@@ -36,7 +36,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T23:17:20.251676+03:00",
-    "SerialNumber": "OSC-004-2024",
+    "SerialNumber": "OSC-004-2025",
     "DisableCode": "7ASQI2GQ"
   },
   {
@@ -46,7 +46,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T23:17:20.251678+03:00",
-    "SerialNumber": "OSC-005-2024",
+    "SerialNumber": "OSC-005-2025",
     "DisableCode": "QLEANR7Z"
   },
   {
@@ -56,7 +56,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T23:17:55.246077+03:00",
-    "SerialNumber": "OSC-006-2024",
+    "SerialNumber": "OSC-006-2025",
     "DisableCode": "TXB53GXK"
   },
   {
@@ -66,7 +66,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T14:28:30+03:00",
-    "SerialNumber": "OSC-007-2024",
+    "SerialNumber": "OSC-007-2025",
     "DisableCode": "4HQ805E8"
   },
   {
@@ -76,7 +76,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T23:17:55.246231+03:00",
-    "SerialNumber": "OSC-008-2024",
+    "SerialNumber": "OSC-008-2025",
     "DisableCode": "ULM0YQQ4"
   },
   {
@@ -86,7 +86,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T23:17:20.251683+03:00",
-    "SerialNumber": "OSC-009-2024",
+    "SerialNumber": "OSC-009-2025",
     "DisableCode": "9A9TJMFJ"
   },
   {
@@ -96,7 +96,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T14:27:45+03:00",
-    "SerialNumber": "OSC-010-2024",
+    "SerialNumber": "OSC-010-2025",
     "DisableCode": "52REPO9O"
   },
   {
@@ -106,7 +106,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T23:17:55.24624+03:00",
-    "SerialNumber": "OSC-011-2024",
+    "SerialNumber": "OSC-011-2025",
     "DisableCode": "0GXV11YE"
   },
   {
@@ -116,7 +116,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T23:17:55.246242+03:00",
-    "SerialNumber": "OSC-012-2024",
+    "SerialNumber": "OSC-012-2025",
     "DisableCode": "QNL3MUST"
   },
   {
@@ -126,7 +126,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T14:27:00+03:00",
-    "SerialNumber": "OSC-013-2024",
+    "SerialNumber": "OSC-013-2025",
     "DisableCode": "MURGG3NE"
   },
   {
@@ -136,7 +136,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T23:17:20.251686+03:00",
-    "SerialNumber": "OSC-014-2024",
+    "SerialNumber": "OSC-014-2025",
     "DisableCode": "1E4BXMGV"
   },
   {
@@ -146,7 +146,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T23:17:20.251687+03:00",
-    "SerialNumber": "OSC-015-2024",
+    "SerialNumber": "OSC-015-2025",
     "DisableCode": "2WQEK9Z6"
   },
   {
@@ -156,7 +156,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T23:17:20.251687+03:00",
-    "SerialNumber": "OSC-016-2024",
+    "SerialNumber": "OSC-016-2025",
     "DisableCode": "HTZTSM13"
   },
   {
@@ -166,7 +166,7 @@
     "StatusCode": 36747,
     "LastCommand": "CONNECTION_LOST",
     "LastUpdate": "2025-08-12T16:27:20.476405+03:00",
-    "SerialNumber": "OSC-017-2024",
+    "SerialNumber": "OSC-017-2025",
     "DisableCode": "3GVFJPMM"
   },
   {
@@ -176,7 +176,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T14:25:45+03:00",
-    "SerialNumber": "OSC-018-2024",
+    "SerialNumber": "OSC-018-2025",
     "DisableCode": "P3I68F8Q"
   },
   {
@@ -186,7 +186,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T14:25:30+03:00",
-    "SerialNumber": "OSC-019-2024",
+    "SerialNumber": "OSC-019-2025",
     "DisableCode": "MD6384M4"
   },
   {
@@ -196,7 +196,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T14:25:15+03:00",
-    "SerialNumber": "OSC-020-2024",
+    "SerialNumber": "OSC-020-2025",
     "DisableCode": "8VBGEAJJ"
   },
   {
@@ -206,7 +206,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T14:25:00+03:00",
-    "SerialNumber": "OSC-021-2024",
+    "SerialNumber": "OSC-021-2025",
     "DisableCode": "MB7DVWOU"
   },
   {
@@ -216,7 +216,7 @@
     "StatusCode": 36747,
     "LastCommand": "EMPTY",
     "LastUpdate": "2025-08-11T12:15:30+03:00",
-    "SerialNumber": "OSC-022-2024",
+    "SerialNumber": "OSC-022-2025",
     "DisableCode": "ONYQNAJY"
   },
   {
@@ -226,7 +226,7 @@
     "StatusCode": 36747,
     "LastCommand": "CONNECTION_LOST",
     "LastUpdate": "2025-08-11T11:45:12+03:00",
-    "SerialNumber": "OSC-023-2024",
+    "SerialNumber": "OSC-023-2025",
     "DisableCode": "WVRL8JII"
   },
   {
@@ -236,7 +236,7 @@
     "StatusCode": 36747,
     "LastCommand": "CONNECTION_LOST",
     "LastUpdate": "2025-08-11T10:22:05+03:00",
-    "SerialNumber": "OSC-024-2024",
+    "SerialNumber": "OSC-024-2025",
     "DisableCode": "UPLVDP1S"
   },
   {
@@ -246,7 +246,7 @@
     "StatusCode": 36747,
     "LastCommand": "CONNECTION_LOST",
     "LastUpdate": "2025-08-11T09:30:18+03:00",
-    "SerialNumber": "OSC-025-2024",
+    "SerialNumber": "OSC-025-2025",
     "DisableCode": "OAL4UFTO"
   },
   {
@@ -256,7 +256,7 @@
     "StatusCode": 36747,
     "LastCommand": "CONNECTION_LOST",
     "LastUpdate": "2025-08-11T08:12:44+03:00",
-    "SerialNumber": "OSC-026-2024",
+    "SerialNumber": "OSC-026-2025",
     "DisableCode": "PC61NJXE"
   },
   {
@@ -266,7 +266,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T08:12:44+03:00",
-    "SerialNumber": "OSC-026-2024",
+    "SerialNumber": "OSC-026-2025",
     "DisableCode": "7R36I26X"
   },
   {
@@ -276,7 +276,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T08:12:44+03:00",
-    "SerialNumber": "OSC-026-2024",
+    "SerialNumber": "OSC-026-2025",
     "DisableCode": "69C149WT"
   },
   {
@@ -286,7 +286,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T08:12:44+03:00",
-    "SerialNumber": "OSC-026-2024",
+    "SerialNumber": "OSC-026-2025",
     "DisableCode": "QV98G1VQ"
   },
   {
@@ -296,7 +296,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T08:12:44+03:00",
-    "SerialNumber": "OSC-026-2024",
+    "SerialNumber": "OSC-026-2025",
     "DisableCode": "84G7QNDI"
   },
   {
@@ -306,7 +306,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T08:12:44+03:00",
-    "SerialNumber": "OSC-026-2024",
+    "SerialNumber": "OSC-026-2025",
     "DisableCode": "ENBQMUD2"
   },
   {
@@ -316,7 +316,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T08:12:44+03:00",
-    "SerialNumber": "OSC-026-2024",
+    "SerialNumber": "OSC-026-2025",
     "DisableCode": "MLKD0MIV"
   },
   {
@@ -326,7 +326,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T08:12:44+03:00",
-    "SerialNumber": "OSC-026-2024",
+    "SerialNumber": "OSC-026-2025",
     "DisableCode": "Z20L3RYI"
   },
   {
@@ -336,7 +336,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T08:12:44+03:00",
-    "SerialNumber": "OSC-026-2024",
+    "SerialNumber": "OSC-026-2025",
     "DisableCode": "CQ7PFVUY"
   },
   {
@@ -346,7 +346,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T08:12:44+03:00",
-    "SerialNumber": "OSC-026-2024",
+    "SerialNumber": "OSC-026-2025",
     "DisableCode": "2Q91K4H4"
   },
   {
@@ -356,7 +356,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T08:12:44+03:00",
-    "SerialNumber": "OSC-026-2024",
+    "SerialNumber": "OSC-026-2025",
     "DisableCode": "FB962AQ4"
   },
   {
@@ -366,7 +366,7 @@
     "StatusCode": 36747,
     "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
     "LastUpdate": "2025-08-11T08:12:44+03:00",
-    "SerialNumber": "OSC-026-2024",
+    "SerialNumber": "OSC-026-2025",
     "DisableCode": "6FOC3FO3"
   }
 ]
