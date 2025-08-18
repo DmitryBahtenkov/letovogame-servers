@@ -368,5 +368,15 @@
     "LastUpdate": "2025-08-11T08:12:44+03:00",
     "SerialNumber": "OSC-0339-2025",
     "DisableCode": "6FOC3FO3"
+  },
+  {
+    "Id": 21,
+    "Name": "Назаренко Дмитрий",
+    "Status": "health",
+    "StatusCode": 36747,
+    "LastCommand": "\u041E\u0440\u0433\u0430\u043D\u044B \u0440\u0430\u0431\u043E\u0442\u0430\u044E\u0442 \u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u043E, \u0432\u0441\u0435 \u0432 \u043D\u043E\u0440\u043C\u0435.",
+    "LastUpdate": "2025-08-11T08:12:44+03:00",
+    "SerialNumber": "OSC-0339-2025",
+    "DisableCode": "6FOC3FO3"
   }
 ]

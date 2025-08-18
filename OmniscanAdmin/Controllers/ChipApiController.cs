@@ -27,10 +27,6 @@ namespace OmniscanAdmin.Controllers
         {
             try
             {
-                if (!SystemConfig.AllowDisable)
-                {
-                    return BadRequest("Cannot update status");
-                }
                 // This allows any external party to modify chip statuses
 
                 _logger.LogInformation($"API: Received status update request for chip {model.ChipId}");
