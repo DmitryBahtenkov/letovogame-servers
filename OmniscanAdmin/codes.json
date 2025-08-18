@@ -126,20 +126,6 @@
     "FixedCode": 203401
   },
   {
-    "Category": null,
-    "ProblemCode": null,
-    "ProblemDescription": null,
-    "FixedDescription": null,
-    "FixedCode": null
-  },
-  {
-    "Category": null,
-    "ProblemCode": null,
-    "ProblemDescription": null,
-    "FixedDescription": null,
-    "FixedCode": null
-  },
-  {
     "Category": "health",
     "ProblemCode": 157626,
     "ProblemDescription": "Перегрузка организма: Пациент не справляется с нагрузкой, организм в состоянии стресса.",
@@ -264,20 +250,6 @@
     "ProblemDescription": "Кровоизлияние: Нарушение циркуляции крови, кровотечения.",
     "FixedDescription": "Кровообращение восстановлено, нарушений нет.",
     "FixedCode": 259230
-  },
-  {
-    "Category": null,
-    "ProblemCode": null,
-    "ProblemDescription": null,
-    "FixedDescription": null,
-    "FixedCode": null
-  },
-  {
-    "Category": null,
-    "ProblemCode": null,
-    "ProblemDescription": null,
-    "FixedDescription": null,
-    "FixedCode": null
   },
   {
     "Category": "network",
@@ -406,20 +378,6 @@
     "FixedCode": 210132
   },
   {
-    "Category": null,
-    "ProblemCode": null,
-    "ProblemDescription": null,
-    "FixedDescription": null,
-    "FixedCode": null
-  },
-  {
-    "Category": null,
-    "ProblemCode": null,
-    "ProblemDescription": null,
-    "FixedDescription": null,
-    "FixedCode": null
-  },
-  {
     "Category": "external",
     "ProblemCode": 168964,
     "ProblemDescription": "Инородное тело в организме: Чуждое вещество или объект попал в тело пациента.",
@@ -544,20 +502,6 @@
     "ProblemDescription": "Попадание посторонних частиц: В организм пациента проникли чуждые вещества.",
     "FixedDescription": "Все посторонние частицы устранены, состояние стабильно.",
     "FixedCode": 200799
-  },
-  {
-    "Category": null,
-    "ProblemCode": null,
-    "ProblemDescription": null,
-    "FixedDescription": null,
-    "FixedCode": null
-  },
-  {
-    "Category": null,
-    "ProblemCode": null,
-    "ProblemDescription": null,
-    "FixedDescription": null,
-    "FixedCode": null
   },
   {
     "Category": "intrusion",
