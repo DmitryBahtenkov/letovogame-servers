@@ -11,7 +11,7 @@
     "ProblemCode": 116720,
     "ProblemDescription": "Операционное вмешательство: Операция по извлечению чипа начинается, чип фиксирует вмешательство.",
     "FixedDescription": "Операция завершена успешно, вмешательства больше нет.",
-    "FixedCode": 291176
+    "FixedCode": 284738
   },
   {
     "Category": "system",
@@ -32,7 +32,7 @@
     "ProblemCode": 121243,
     "ProblemDescription": "Ошибка в вычислениях: Неудачная попытка выполнения вычислений, чип не может завершить текущую задачу.",
     "FixedDescription": "Ошибки устранены, система работает корректно.",
-    "FixedCode": 243478
+    "FixedCode": 203401
   },
   {
     "Category": "system",
@@ -46,7 +46,7 @@
     "ProblemCode": 174598,
     "ProblemDescription": "Устройство повреждено: Физическое повреждение устройства, которое может повлиять на его работоспособность.",
     "FixedDescription": "Пациент без травм, состояние стабильно.",
-    "FixedCode": 219578
+    "FixedCode": 213523
   },
   {
     "Category": "system",
@@ -67,7 +67,7 @@
     "ProblemCode": 128894,
     "ProblemDescription": "Ошибка соединения: Устройство не может соединиться с сервером, возникла проблема с передачей данных.",
     "FixedDescription": "Связь восстановлена, соединение стабильное.",
-    "FixedCode": 278932
+    "FixedCode": 290503
   },
   {
     "Category": "system",
@@ -81,7 +81,7 @@
     "ProblemCode": 159604,
     "ProblemDescription": "Зависание при запуске: Чип не может выйти из начальной загрузки.",
     "FixedDescription": "Система отвечает на запросы, зависаний нет.",
-    "FixedCode": 274680
+    "FixedCode": 234620
   },
   {
     "Category": "system",
@@ -109,7 +109,7 @@
     "ProblemCode": 176352,
     "ProblemDescription": "Отказ системы: Полный отказ всех систем устройства.",
     "FixedDescription": "Все системы восстановлены, отказов нет.",
-    "FixedCode": 249247
+    "FixedCode": 200659
   },
   {
     "Category": "system",
@@ -123,42 +123,42 @@
     "ProblemCode": 107925,
     "ProblemDescription": "Ошибка безопасности: Проблемы с безопасностью устройства.",
     "FixedDescription": "Ошибки устранены, система работает корректно.",
-    "FixedCode": 250333
+    "FixedCode": 203401
   },
   {
-    "Category": "system",
-    "ProblemCode": 108482,
-    "ProblemDescription": "Повреждение устройства: Устройство получило физическое повреждение, нарушающее его функционирование.",
-    "FixedDescription": "Устройство отремонтировано, повреждений нет.",
-    "FixedCode": 293014
+    "Category": null,
+    "ProblemCode": null,
+    "ProblemDescription": null,
+    "FixedDescription": null,
+    "FixedCode": null
   },
   {
-    "Category": "system",
-    "ProblemCode": 169698,
-    "ProblemDescription": "Операционное вмешательство: Операция по извлечению чипа начинается, чип фиксирует вмешательство.",
-    "FixedDescription": "Операция завершена успешно, вмешательства больше нет.",
-    "FixedCode": 271246
+    "Category": null,
+    "ProblemCode": null,
+    "ProblemDescription": null,
+    "FixedDescription": null,
+    "FixedCode": null
   },
   {
     "Category": "health",
     "ProblemCode": 157626,
     "ProblemDescription": "Перегрузка организма: Пациент не справляется с нагрузкой, организм в состоянии стресса.",
     "FixedDescription": "Нагрузка нормализована, перегрузки устранены.",
-    "FixedCode": 218452
+    "FixedCode": 201501
   },
   {
     "Category": "health",
     "ProblemCode": 186407,
     "ProblemDescription": "Операционное вмешательство: Операция начата, происходит вмешательство в тело пациента.",
     "FixedDescription": "Операция завершена успешно, вмешательства больше нет.",
-    "FixedCode": 227536
+    "FixedCode": 284738
   },
   {
     "Category": "health",
     "ProblemCode": 136721,
     "ProblemDescription": "Нарушение кровообращения: Проблемы с циркуляцией крови, может возникать нехватка кислорода.",
     "FixedDescription": "Кровообращение восстановлено, нарушений нет.",
-    "FixedCode": 274252
+    "FixedCode": 259230
   },
   {
     "Category": "health",
@@ -179,21 +179,21 @@
     "ProblemCode": 102425,
     "ProblemDescription": "Нарушение дыхания: Проблемы с дыханием, возможны признаки дыхательной недостаточности.",
     "FixedDescription": "Дыхание нормализовано, пациент стабилен.",
-    "FixedCode": 231507
+    "FixedCode": 214209
   },
   {
     "Category": "health",
     "ProblemCode": 189350,
     "ProblemDescription": "Перегрузка нервной системы: Стресс или эмоциональное перенапряжение пациента, возможно нарушение психоэмоционального состояния.",
     "FixedDescription": "Нагрузка нормализована, перегрузки устранены.",
-    "FixedCode": 267386
+    "FixedCode": 201501
   },
   {
     "Category": "health",
     "ProblemCode": 176511,
     "ProblemDescription": "Отказ органов: Отказ одного или нескольких органов пациента в процессе операции.",
     "FixedDescription": "Все системы восстановлены, отказов нет.",
-    "FixedCode": 289759
+    "FixedCode": 200659
   },
   {
     "Category": "health",
@@ -221,7 +221,7 @@
     "ProblemCode": 191377,
     "ProblemDescription": "Токсичное воздействие: Пациент был отравлен химическими веществами.",
     "FixedDescription": "Отравление устранено, организм восстановлен.",
-    "FixedCode": 225563
+    "FixedCode": 208307
   },
   {
     "Category": "health",
@@ -266,25 +266,25 @@
     "FixedCode": 259230
   },
   {
-    "Category": "health",
-    "ProblemCode": 159169,
-    "ProblemDescription": "Перегрузка организма: Пациент не справляется с нагрузкой, организм в состоянии стресса.",
-    "FixedDescription": "Нагрузка нормализована, перегрузки устранены.",
-    "FixedCode": 285955
+    "Category": null,
+    "ProblemCode": null,
+    "ProblemDescription": null,
+    "FixedDescription": null,
+    "FixedCode": null
   },
   {
-    "Category": "health",
-    "ProblemCode": 130131,
-    "ProblemDescription": "Операционное вмешательство: Операция начата, происходит вмешательство в тело пациента.",
-    "FixedDescription": "Операция завершена успешно, вмешательства больше нет.",
-    "FixedCode": 284738
+    "Category": null,
+    "ProblemCode": null,
+    "ProblemDescription": null,
+    "FixedDescription": null,
+    "FixedCode": null
   },
   {
     "Category": "network",
     "ProblemCode": 192197,
     "ProblemDescription": "Потеря связи с сервером: Устройство не может установить соединение с сервером.",
     "FixedDescription": "Связь восстановлена, соединение стабильное.",
-    "FixedCode": 222461
+    "FixedCode": 290503
   },
   {
     "Category": "network",
@@ -340,7 +340,7 @@
     "ProblemCode": 145607,
     "ProblemDescription": "Проблемы с сервером: Потеря связи с сервером или сервер не отвечает.",
     "FixedDescription": "Связь восстановлена, соединение стабильное.",
-    "FixedCode": 288747
+    "FixedCode": 290503
   },
   {
     "Category": "network",
@@ -361,7 +361,7 @@
     "ProblemCode": 192024,
     "ProblemDescription": "Перегрузка канала: Канал связи перегружен, происходит снижение скорости.",
     "FixedDescription": "Нагрузка нормализована, перегрузки устранены.",
-    "FixedCode": 270621
+    "FixedCode": 201501
   },
   {
     "Category": "network",
@@ -403,21 +403,21 @@
     "ProblemCode": 108198,
     "ProblemDescription": "Проблемы с брандмауэром: Брандмауэр блокирует подключение к сети.",
     "FixedDescription": "Брандмауэр не блокирует подключение, соединение стабильно.",
-    "FixedCode": 222985
-  },
-  {
-    "Category": "network",
-    "ProblemCode": 135358,
-    "ProblemDescription": "Потеря связи с сервером: Устройство не может установить соединение с сервером.",
-    "FixedDescription": "Связь восстановлена, соединение стабильное.",
-    "FixedCode": 209663
-  },
-  {
-    "Category": "network",
-    "ProblemCode": 115786,
-    "ProblemDescription": "Проблемы с сетью: Проблемы с подключением, возможно нестабильный сигнал.",
-    "FixedDescription": "Брандмауэр не блокирует подключение, соединение стабильно.",
     "FixedCode": 210132
+  },
+  {
+    "Category": null,
+    "ProblemCode": null,
+    "ProblemDescription": null,
+    "FixedDescription": null,
+    "FixedCode": null
+  },
+  {
+    "Category": null,
+    "ProblemCode": null,
+    "ProblemDescription": null,
+    "FixedDescription": null,
+    "FixedCode": null
   },
   {
     "Category": "external",
@@ -452,7 +452,7 @@
     "ProblemCode": 175891,
     "ProblemDescription": "Токсическое отравление: Пациент был отравлен химическими веществами.",
     "FixedDescription": "Отравление устранено, организм восстановлен.",
-    "FixedCode": 298922
+    "FixedCode": 208307
   },
   {
     "Category": "external",
@@ -536,7 +536,7 @@
     "ProblemCode": 189816,
     "ProblemDescription": "Отравление химическими веществами: Контакт с опасными химикатами.",
     "FixedDescription": "Отравление устранено, организм восстановлен.",
-    "FixedCode": 279817
+    "FixedCode": 208307
   },
   {
     "Category": "external",
@@ -546,32 +546,32 @@
     "FixedCode": 200799
   },
   {
-    "Category": "external",
-    "ProblemCode": 170096,
-    "ProblemDescription": "Инородное тело в организме: Чуждое вещество или объект попал в тело пациента.",
-    "FixedDescription": "Все посторонние частицы устранены, состояние стабильно.",
-    "FixedCode": 290336
+    "Category": null,
+    "ProblemCode": null,
+    "ProblemDescription": null,
+    "FixedDescription": null,
+    "FixedCode": null
   },
   {
-    "Category": "external",
-    "ProblemCode": 156071,
-    "ProblemDescription": "Химическое воздействие: Пациент подвергся воздействию токсичных химикатов.",
-    "FixedDescription": "Все посторонние частицы устранены, состояние стабильно.",
-    "FixedCode": 249929
+    "Category": null,
+    "ProblemCode": null,
+    "ProblemDescription": null,
+    "FixedDescription": null,
+    "FixedCode": null
   },
   {
     "Category": "intrusion",
     "ProblemCode": 123535,
     "ProblemDescription": "Попытка несанкционированного доступа: Попытка внешнего доступа в систему.",
     "FixedDescription": "Система защищена, несанкционированный доступ заблокирован.",
-    "FixedCode": 282459
+    "FixedCode": 210168
   },
   {
     "Category": "intrusion",
     "ProblemCode": 133027,
     "ProblemDescription": "Взлом системы: Угрозы безопасности, попытки взлома чипа или системы.",
     "FixedDescription": "Система защищена, несанкционированный доступ заблокирован.",
-    "FixedCode": 218694
+    "FixedCode": 210168
   },
   {
     "Category": "intrusion",
@@ -585,7 +585,7 @@
     "ProblemCode": 165689,
     "ProblemDescription": "Неавторизованный доступ: Подключение постороннего устройства без разрешения.",
     "FixedDescription": "Система защищена, несанкционированный доступ заблокирован.",
-    "FixedCode": 243745
+    "FixedCode": 210168
   },
   {
     "Category": "intrusion",
@@ -599,7 +599,7 @@
     "ProblemCode": 153099,
     "ProblemDescription": "Внешнее воздействие: Внешняя угроза безопасности, попытка взлома устройства.",
     "FixedDescription": "Система защищена, несанкционированный доступ заблокирован.",
-    "FixedCode": 299601
+    "FixedCode": 210168
   },
   {
     "Category": "intrusion",
@@ -634,7 +634,7 @@
     "ProblemCode": 103393,
     "ProblemDescription": "Нарушение конфиденциальности: Попытка доступа к конфиденциальным данным.",
     "FixedDescription": "Система защищена, несанкционированный доступ заблокирован.",
-    "FixedCode": 240228
+    "FixedCode": 210168
   },
   {
     "Category": "intrusion",
@@ -648,7 +648,7 @@
     "ProblemCode": 107317,
     "ProblemDescription": "Подключение с целью взлома: Чуждый доступ для взлома системы.",
     "FixedDescription": "Система защищена, несанкционированный доступ заблокирован.",
-    "FixedCode": 246744
+    "FixedCode": 210168
   },
   {
     "Category": "intrusion",
@@ -676,7 +676,7 @@
     "ProblemCode": 150277,
     "ProblemDescription": "Нарушение безопасности сети: Попытки взлома сети или подключения через незашифрованные каналы.",
     "FixedDescription": "Система защищена, несанкционированный доступ заблокирован.",
-    "FixedCode": 295884
+    "FixedCode": 210168
   },
   {
     "Category": "intrusion",
@@ -684,19 +684,5 @@
     "ProblemDescription": "Атака на систему: Попытка провести кибератаку на систему.",
     "FixedDescription": "Атака предотвращена, система функционирует нормально.",
     "FixedCode": 253178
-  },
-  {
-    "Category": "intrusion",
-    "ProblemCode": 191088,
-    "ProblemDescription": "Попытка несанкционированного доступа: Попытка внешнего доступа в систему.",
-    "FixedDescription": "Система защищена, несанкционированный доступ заблокирован.",
-    "FixedCode": 242789
-  },
-  {
-    "Category": "intrusion",
-    "ProblemCode": 169224,
-    "ProblemDescription": "Взлом системы: Угрозы безопасности, попытки взлома чипа или системы.",
-    "FixedDescription": "Система защищена, несанкционированный доступ заблокирован.",
-    "FixedCode": 210176
   }
 ]
